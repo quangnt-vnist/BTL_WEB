@@ -1,0 +1,16 @@
+-làm thông báo chưa đnhap detail
+-sửa cái navbar khi đnhap
+-api detail
+
+
+
+
+
+- model: 
+	-Chi tiết Ứng viên(dùng cho việc tìm kiếm ứng viên)
+	-công việc: (freelance, fulltime)
+- chức năng: 
+	-tìm kiếm ứng viên
+	-tìm kiếm công việc
+	-showAll công việc
+	-showAll ứng viên

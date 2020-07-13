@@ -1,0 +1,73 @@
+<% if (user && user.hasDetail === -1) { %>
+<div class="alert alert-note bg-white shadow-md border pl-12 pr-12 pt-3 pb-3 ">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+    <div class="d-flex" style="margin-top: 20px;">
+        <div class=" d-flex align-items-center justify-content-center">
+            <div class="mb-md-0 mb-3">
+                <span class="text-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span> </div>
+        </div>
+        <div class="flex-grow-1 ml-2 pl-2 border-left">
+            <div class="d-inline-block text-gray-600 font-size-14">
+                <p class="mb-2" style="">Chúng tôi đã xem xét hồ sơ của bạn và hiện tại, nó không đáp ứng các tiêu chí
+                    về thông tin chi tiết cần có
+                    của chúng tôi.</p>
+                <p class="mb-2" style="">Vui lòng cập nhật lại hồ sơ đầy đủ thông tin chi tiết, ví dụ như:</p>
+                <p class="mb-2" style=""></p>
+                <p class="mb-1" style="margin-bottom: 8px; margin-top: 0;">• Cập nhật tuổi tác, địa chỉ của bạn
+                </p>
+                <p class="mb-1" style="margin-bottom: 8px; margin-top: 0;">• Cập nhật trình độ học vấn
+                </p>
+                <p class="mb-1" style="margin-bottom: 8px; margin-top: 0;">• Cập nhật kinh nghiệm làm việc
+                </p>
+                <p class="mb-1" style="margin-bottom: 8px; margin-top: 0;">• etc...</p>
+                <p></p>
+                <p class="mb-2" style="">Nếu có thắc mắc, vui lòng liên hệ chúng tôi qua email 
+                    <a href="mailto:support@freelancergo.vn" class="text-primary">tại đây</a>.</p>
+                <% if (user.role === "Nhà tuyển dụng") { %>
+                    <a href="/employer/create-info" class="btn btn-outline-primary pl-3 pr-3" >Thiết lập hồ sơ</a>
+                <% } %>
+                <% if (user.role === "Ứng viên") { %>
+                    <a href="/candidate/create-info" class="btn btn-outline-primary pl-3 pr-3" >Thiết lập hồ sơ</a>
+                <% } %>
+                <!-- <a href="#"
+                    class="btn btn-outline-primary pl-3 pr-3" data-target="#modal-resubmit-profile"
+                    data-toggle="modal">Thiết lập hồ sơ</a>
+                <div class="modal modal-default fade" id="modal-resubmit-profile" tabindex="-1" role="dialog"
+                    aria-labelledby="modal-resubmit-profile-label">
+                    <div class="modal-dialog modal-872" role="document">
+                        <form action="https://freelancerviet.vn/user/profile/resubmit" method="post"
+                            class="form-validate form-ajax" novalidate="novalidate">
+                            <div class="modal-content">
+                                <div class="modal-header header-primary">
+                                    <div class="modal-title">
+                                        <h4 class="modal-title font-size-18 mb-4" id="modal-resubmit-profile-label">THIẾT LẬP HỒ SƠ</h4>
+                                    </div>
+                                    <button type="button" class="close opacity-100 text-primary" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <i class="icon-close" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-body pl-10 pr-10 pt-14 pb-14">
+                                    <p class="mb-2" style="">Trước khi gửi lại, vui lòng kiểm tra và cập nhật hồ sơ của
+                                        bạn đã điền đầy đủ các thông tin về kỹ năng, kinh nghiệm, trình độ học vấn, và
+                                        các dự án đã làm bên ngoài freelancerViet (nếu có).</p>
+                                    <p class="mb-2" style="">Khi bạn gửi lại hồ sơ đã cập nhật, chúng tôi sẽ xem xét và
+                                        phê duyệt thông tin hồ sơ của bạn.</p>
+                                </div>
+                                <div class="modal-footer border-top-0 pl-10 pr-10 pt-0 pb-11 justify-content-start">
+                                    <button class="btn btn-primary mr-2">Gửi lại hồ sơ</button>
+                                    <a href="#" class="btn btn-default text-gray-650" data-dismiss="modal">Hủy</a>
+                                </div>
+                            </div>
+                            <input type="hidden" name="_token" value="9eb8f2fb69b4182780aac1cd697e42d0">
+                            <input type="hidden" name="id" value="234255">
+                        </form>
+                    </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<% } %>

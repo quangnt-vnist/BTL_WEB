@@ -1,0 +1,443 @@
+<%- include ('../template/header.ejs') -%>
+
+<div class="content-wrapper">
+    <section class="content bg-gray-75 pt-8 pb-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-8">
+
+
+                    <div class="card shadow-md mb-4">
+                        <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                            <h3 class="font-size-18 m-0">
+                                <button type="button" class="btn btn-info" data-toggle="collapse" href="#OverView" style="color: white;">TỔNG QUAN</button>
+                            </h3>
+                        </div>
+                        <div id="OverView" class="collapse show">
+                        <div class="card-body p-0">
+                            <div class="card flex-sm-row">
+                                <div class="ml-10 mt-11 mb-3">
+                                    <img src="/images/bg-head-03.jpg"
+                                        class="avatar avatar-100" alt="">
+                                </div>
+                                <div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1">
+                                    <div class="card unset-border">
+                                        <div class="card-header d-md-flex p-0 bg-transparent">
+                                            <div class="flex-grow-1">
+                                                <h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;"><%= job.name %> 
+                                                </h1>
+                                                <span class="ml-2 mr-2" style="margin: 12px 2px 0px 2px; font-size: 5px;"><i class="fa fa-circle font-size-dot"
+                                                        aria-hidden="true"></i></span>
+                                                        <% if (job.inActive === 1) { %>
+                                                         <strong><i style="color: red;">Đang tuyển dụng</i></strong> 
+                                                        <% } %>
+                                                        <% if (job.inActive !== 1) { %>
+                                                         <strong><i style="color: darkslategrey;">Đã dừng tuyển dụng</i></strong> 
+                                                        <% } %>
+                                                        <br>
+                                                <span class="font-size-14 text-gray"  style="font-size: 14px;">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i> Ngày đăng: 
+                                                    <%= jobCreatedAt %> </span>
+                                            </div>
+                                            <!-- <span class="fw-bold ml-md-auto d-none">Điểm: <span
+                                                    class="text-primary">-</span></span> -->
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <p class=" mb-3 fw-500 "> Lĩnh vực tuyển dụng: <span class="text-primary" style="font-weight: 500;"><%= job.field %></span>   </p>
+                                            <ul
+                                                class="nav align-items-start align-items-sm-center flex-column flex-sm-row mb-3">
+
+                                                <li class="nav-item">
+                                                    <span class=" font-size-14 fw-500">Mức lương:</span>
+                                                    <span class="font-size-14" style="color: red; font-weight: 500;"><%= job.budget %>$</span>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <hr class="ml-10 mr-10"> -->
+                        <div class="card-body pt-2 pl-10 pr-10 pb-10 font-size-14">
+                            <p class="mb-0 ">Công ty tuyển dụng: <%= creator.company.name %> </p>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-md mb-4">
+                        <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                            
+                            <h3 class="font-size-18 m-0">
+                                <button type="button" class="btn btn-info" data-toggle="collapse" href="#collapseInfo">MÔ TẢ CHI TIẾT</button>
+                            </h3>
+                            <!-- <a data-toggle="collapse" href="#collapseInfo">MÔ TẢ CHI TIẾT</a> -->
+                        </div>
+
+                        <div id="collapseInfo" class="collapse show">
+<!-- ------------------------------- -->
+                            <div class="card-body p-0">
+                                <p><span class="font-size-16 fw-bold mb-1" style="padding: 3px 10px; font-size: 16; font-weight: bold;">Mô tả công việc:</span>
+                                <%= job.description %></p><br>
+
+                                <p><span class="font-size-16 fw-bold mb-1" style="padding: 3px 10px; font-size: 16; font-weight: bold;">Thời gian làm việc:</span>
+                                <%= job.timeOfWork %></p><br>
+                                
+                                <p><span class="font-size-16 fw-bold mb-1" style="padding: 3px 10px; font-size: 16; font-weight: bold;">Trình độ yêu cầu:</span>
+                                <%= job.levelOfCandidate %></p>
+                                
+                                <div id="skills-list" class="pl-10 pr-10 pt-3 pb-3 unset-border" >
+                                    <span class="font-size-16 fw-bold mb-1" style="padding: 3px 10px; font-size: 16; font-weight: bold;">Kỹ năng yêu cầu: </span>
+                                    <% job.field.forEach(sk => { %>
+                                    <a class="btn btn-skills btn-sxs mr-2 mb-2"><span><%= sk %> </span> </a>
+                                    <% }) %>
+                                </div>
+                                <!-- <hr> -->
+                            </div>
+                            
+
+
+                            <div class="card shadow-md mb-4">
+                                <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                    <!-- <h3 class="font-size-18 m-0">Thông tin Công ty tuyển dụng</h3> -->
+                                </div>
+                                <div class="card-body p-0 pt-3 pb-3 ">
+                                    <div id="education-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                                        <div class="card pt-2 pb-2 education-item-134434 unset-border" >
+                                            <div class="card-body p-0">
+                                                <h4>
+                                                    <a style="font-weight: 500;">Thông tin Công ty tuyển dụng</a>
+                                                </h4>
+                                                <br>
+                                                <p class="mb-1" > <span style="font-size: 16; font-weight: bold;">Tên:</span> <%= creator.company.name %> </p><br>
+                                                <p class="mb-1" ><span style="font-size: 16; font-weight: bold;">Địa chỉ:</span> <%= creator.company.address %> </p><br>
+                                                <p class="mb-1" > <span style="font-size: 16; font-weight: bold;">Mô tả công ty:</span> <%= creator.company.description %> </p><br>
+                                                <p ><span style="font-size: 16; font-weight: bold;">Mọi thông tin vui lòng liên hệ:</span></p><br>
+                                                <a href="<%= creator.company.website %>" target="blank" class="mb-1" style="margin-left: 5px;">- Website công ty: <%= creator.company.website %> </a><br>
+                                                <a href="mailto:<%= creator.company.email %>" class="mb-1" style="margin-left: 5px;">- Email công ty: <%= creator.company.email %> </a><br>
+                                                <a href="mailto:<%= creator.user.email %>" class="mb-1" style="margin-left: 5px;">- Người đại diện: <%= creator.user.name %> - Email: <%= creator.user.email %> </a><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+<!-- ------------------------------------ -->
+                        </div>
+                    </div>
+
+
+                    <!-- COMMENT -->
+                    <% if (status === "participate") { %>
+                     
+                    <!-- < % if (job.inActive === 1) { %> -->
+                        
+                        <div class="card shadow-md mb-4 unset-border">
+                            <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                <h3 class="font-size-18 m-0">
+                                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#report">BÁO CÁO TIẾN ĐỘ</button>
+                                </h3>
+                            </div>
+                            <!-- start div collapse -->
+                            <div id="report" class="collapse show">
+    
+                            <!-- start comment -->
+    
+                        <div id="box-comment">
+                         <% if (comment.length !== 0) { %>
+                            <% comment.forEach(item => { %>
+                                <div class="card shadow-md container"  id="cmt-<%= item._id %>">
+                                           <div class="card-body p-0">
+                                               <div class="card flex-sm-row unset-border">
+                                                   <div class="ml-10 mt-11 mb-3">
+                                                       <img src="/images/def_face.jpg" class="avatar avatar-64" alt="">
+                                                   </div>
+                                                   <div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1">
+                                                       <div class="card unset-border">
+                                                           <div class="card-header d-md-flex p-0 bg-transparent">
+                                                               <div class="flex-grow-1">
+                                                                   <h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;"><%= item.creator.name %> 
+                                                                   </h1>
+                                                                   <span class="ml-2 mr-2" style="margin: 12px 2px 0px 2px; font-size: 5px;"><i class="fa fa-circle font-size-dot"aria-hidden="true"></i></span><%= item.creator.role %> 
+                                                                   <br>
+                                                                   <span class="font-size-14 text-gray" style="font-size: 14px;">
+                                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                       <%= item.createdAt %> 
+                                                                   </span>
+                                                                   <% if (user._id === String(item.creator._id)) { %>
+                                                                    <div class="option-cmt float-right" data-id_cmt="<%= item._id %>">
+                                                                           <!-- onclick=" return handleConfirm('Bạn có chắc muốn xóa hay không?')" href="/candidate/delete-comment/< %= item._id %>" -->
+                                                                        <a title="Delete this comment"><i class="fa fa-trash" style="color: red; font-size: 20px;"></i></a>
+                                                                       </div>
+                                                                   <% } %>
+                                                               </div>
+                                                           </div>
+                                                           <div class="card-body p-0">
+                                                               <ul
+                                                                   class="nav align-items-start align-items-sm-center flex-column flex-sm-row mb-3">
+                                                                   <li class="nav-item">
+                                                                       <span class="text-gray font-size-14 fw-500"> <%= item.comment %> </span>
+                                                                   </li>
+                                                               </ul>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <!-- <hr class="ml-10 mr-10"> -->
+                                           
+                                           <% if (item.file.length !== 0) { %>
+                                            <div class="card-body pt-2 pl-10 pr-10 pb-10 font-size-14" style="text-align: center;">
+                                               <p class="mb-0 text-primary font-size-14">Tài liệu:</p>
+                                               <div class="row" style="text-align: center;">
+                                                   <% item.file.forEach(elem => { %>
+                                                    
+                                                     <% if (elem.type === "image") { %>
+                                                        <div class="file-img" style="margin: 5px;">
+                                                           <a href="<%= elem.path %>" target="_blank" rel="noopener noreferrer">
+                                                                <img title="<%= elem.name%> " src="<%= elem.path %>" class="avatar file-img" >
+                                                            </a>
+                                                       </div>
+                                                     <% } %>
+                                                     <% if (elem.type !== "image") { %>
+                                                        <div class="file-up" title="<%= elem.name%> ">
+                                                            <div style="margin-top: 30%" title="<%= elem.name%> ">
+                                                                <a href="<%= elem.path %>" target="_blank" rel="noopener noreferrer">
+                                                                    <i class="fa fa-file" style="font-size: 20px;"></i>
+                                                                    <br>
+                                                                    <% if (elem.fileType.length > 17) { %>
+                                                                        Tài liệu <%= elem.type %>
+                                                                    <% } %>
+                                                                    <% if (elem.fileType.length <= 17) { %>
+                                                                        Tài liệu <%= elem.fileType %>
+                                                                    <% } %>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                     <% } %>
+                                                   <% }) %>
+                                               </div>
+                                           </div>
+                                           <% } %>
+                                       </div>
+                               <% }) %>
+                         <% } %>
+                        </div>
+<!-- add cmt ------------------------------ -->                        
+                        <div>
+                            <div class="card shadow-md container">
+                                    
+                                        
+                                <div class="card-body p-0">
+                                    <div class="card flex-sm-row unset-border">
+                                        <div class="ml-10 mt-11 mb-3">
+                                            <img src="\images\def_face.jpg"
+                                                class="avatar avatar-64" alt="">
+                                        </div>
+                                        <div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1">
+                                            <div class="card unset-border" >
+                                                <div class="card-header d-md-flex p-0 bg-transparent ">
+                                                    <div class="flex-grow-1">
+                                                        <h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;"><%= user.name %> 
+                                                        </h1>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="card-body p-0 ">
+                                                    <div >
+                                                        <form action="/candidate/comment/<%= job._id %>" method="post" enctype="multipart/form-data">
+                                                            <textarea class="text-cmt" name="comment" id="" cols="" rows="3" placeholder="Báo cáo tại đây"></textarea>
+                                                            
+                                                            <div class="row">
+                                                                <div class="col-sm-9">
+                                                                    <input class="ip-file btn " type="file" id="file" multiple="true" name="file">
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <!-- <input class="btn btn-outline-success" type="submit" value="Gửi"> -->
+                                                                    <input class="btn btn-outline-success" id="submit-cmt" onclick="saveCmt()" type="button" value="Gửi">
+                                                                </div>
+                                                            </div>                                
+                                                        </form>
+                                                        
+                                                        <!-- <form id="upload-widget" method="post" action="/employer/upfile" class="dropzone"></form> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="job-id" style="display: none;"><%= job._id %></div>
+                                
+                            </div>
+                            <script>
+                                function saveCmt(){  
+                                  var fd = new FormData();
+                                  // var files = $('#file')[0].files[0];
+                                  var files = $('#file')[0].files;
+                                  for(let i = 0; i < files.length ; i++){
+                                      console.log('item', files[i]);
+                                      fd.append('files',files[i]);
+                                  }
+                                  // fd.append('files',files);
+                                  fd.append('comment', $('.text-cmt').val());
+                                  var jobId = $('#job-id').html();
+  
+                                  $.ajax({
+                                      url: `/candidate/comment/${jobId}`,
+                                      async: false,
+                                      contentType: false,
+                                      processData: false,
+                                      type : "POST",
+                                      data: fd ,
+                                      success: function(res){
+                                        var cmt = '';
+                                        cmt = cmt + '<div class="card shadow-md container" id="cmt-'+res.comment._id+'"> <div class="card-body p-0"> <div class="card flex-sm-row unset-border"> <div class="ml-10 mt-11 mb-3"><img src="/images/def_face.jpg" class="avatar avatar-64" alt=""></div>';
+                                        cmt = cmt + '<div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1"><div class="card unset-border"><div class="card-header d-md-flex p-0 bg-transparent"><div class="flex-grow-1">';
+                                        cmt = cmt + '<h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;">'+res.comment.creator.name+'</h1>';
+                                        cmt = cmt + '<span class="ml-2 mr-2" style="margin: 12px 2px 0px 2px; font-size: 5px;"><i class="fa fa-circle font-size-dot"aria-hidden="true"></i></span>'+res.comment.creator.role+'<br>';
+                                        cmt = cmt + '<span class="font-size-14 text-gray" style="font-size: 14px;">'
+                                                    +'<i class="fa fa-calendar" aria-hidden="true"></i>'
+                                                    +res.comment.createdAt+'</span>';
+                                        if(res.user._id === String(res.comment.creator._id)){
+                                            // onclick=" return handleConfirm(\'Bạn có chắc muốn xóa hay không?\') " href="/candidate/delete-comment/'+res.comment._id+'" 
+                                            cmt = cmt + '<div class="option-cmt float-right" data-id_cmt="'+res.comment._id+'">'
+                                                        +'<a title="Delete this comment"><i class="fa fa-trash" style="color: red; font-size: 20px;"></i></a>'
+                                                        +'</div>'
+                                        }
+                                         
+                                        cmt = cmt + '</div></div><div class="card-body p-0"><ul class="nav align-items-start align-items-sm-center flex-column flex-sm-row mb-3"><li class="nav-item">';
+                                        cmt = cmt + '<span class="text-gray font-size-14 fw-500">'+res.comment.comment+'</span>';
+                                        cmt = cmt + '</li></ul></div></div></div></div></div>';
+                                        
+                                        if(res.comment.file.length !== 0){
+                                            cmt = cmt + '<div class="card-body pt-2 pl-10 pr-10 pb-10 font-size-14" style="text-align: center;"><p class="mb-0 text-primary font-size-14">Tài liệu:</p><div class="row" style="text-align: center;">';
+                                            res.comment.file.forEach(elem => {
+                                                if(elem.type === "image"){
+                                                    cmt = cmt + '<div class="file-img" style="margin: 5px;">'
+                                                              +'<a href="'+elem.path+'" target="_blank" rel="noopener noreferrer">'
+                                                                      +'<img title="'+ elem.name+'" src="'+elem.path+'" class="avatar file-img" >'
+                                                              +'</a></div>'
+                                                }
+                                                if(elem.type !== "image"){
+                                                    cmt = cmt + '<div class="file-up" title="'+ elem.name+'">'
+                                                        +'<div style="margin-top: 30%" title="'+elem.name+'">'
+                                                        +'<a href="'+elem.path +'" target="_blank" rel="noopener noreferrer"><i class="fa fa-file" style="font-size: 20px;"></i><br>';
+                                                    if (elem.fileType.length > 17){
+                                                        cmt = cmt + 'Tài liệu'+elem.type;
+                                                    } else{
+                                                        cmt = cmt + 'Tài liệu'+elem.fileType;
+                                                    }
+                                                    cmt = cmt + '</a></div></div>';
+                                                }
+                                            });
+                                            cmt = cmt + '</div></div>';
+                                        }
+                                        cmt = cmt +'</div>';
+
+                                        $('#box-comment').append(cmt);
+                                          
+                                      },
+                                  });
+                              }
+                              $(document).on('click', '.option-cmt', function(){
+                                    var id = $(this).data('id_cmt');
+                                    //   alert(id)
+                                    console.log('id-client', id);
+                                    var x = 1;
+                                    var check = window.confirm("Bạn có chắc chắn muốn xóa báo cáo này không?");
+                                    if(check === true){
+                                        // $("#helo"+x).html('');
+                                        // alert(id);
+                                        $.ajax({
+                                            url: `/candidate/delete-comment/${id}`,
+                                            async: false,
+                                            type: 'GET',
+                                            success: function(res){
+                                                alert(res);
+                                                // $('#cmt-'+id).html('');
+                                                $('#cmt-'+id).remove();
+                                            }
+                                        })
+                                    } else {
+                                        // alert("không muốn xóa!");
+                                    }
+                                })
+                            </script>   
+                        </div>
+ <!-- end add cmt--------------------------- -->                       
+                    </div>
+                    <!-- end div collapse show-->
+    
+                               
+                        </div>                    
+                    
+                    <% } %>
+                    <!-- END COMMENT -->
+
+                </div>
+
+                <!-- Phần  thao tác công việc -->
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="sidebar" style="background-color: white; padding: 10px;">
+                        <div class="card bg-transparent mb-4 unset-border" style="text-align: center;">
+                            <div class="card-body p-0">
+                                <% if (status === "") { %>
+                                    <p class="mb-2 bg-white rounded">
+                                        <a onclick="return handleConfirm('Bạn có chắc chắn muốn đăng kí?')" href="/candidate/get-favorite-job/<%= job._id %>"
+                                            class="btn btn-outline-primary  btn-block shadow-sm">Đăng kí tham gia</a>
+                                    </p>
+                                <% } %>
+                                <% if (status === "participate") { %>
+                                    <p class="mb-2 bg-white rounded">
+                                        <!-- <a href="/candidate/get-favorite-job<%= job._id %>/<%= user._id %>"
+                                            class="btn btn-outline-primary  btn-block shadow-sm">Đăng kí tham gia</a> -->
+                                        <button class="btn btn-outline-success btn-block shadow-sm" >Đang tham gia dự án</button>
+                                    </p>
+                                <% } %>
+                                <% if (status === "favorite") { %>
+                                    <p>Bạn đang quan tâm đến công việc này! Nếu bạn không còn quan tâm nữa hãy nhấn hủy bỏ.</p>
+                                    <hr>
+                                    <br>
+                                    <p class="mb-2 bg-white rounded">
+                                        <a onclick="return handleConfirm('Bạn có chắc chắn muốn Hủy đăng kí?')" href="/candidate/discard-favorite/<%= job._id %>/<%= user._id %>"
+                                            class="btn btn-outline-danger btn-block shadow-sm">Hủy bỏ quan tâm</a>
+                                    </p>
+                                <% } %>
+                                <% if (status === "invited") { %>
+                                    <p class="mb-2 bg-white rounded">
+                                        <p><%= message %></p>
+                                        <hr>
+                                        <br>
+                                        <a onclick="return handleConfirm('Bạn có chắc chắn muốn tham gia dự án?')" href="/candidate/confirm-invite/<%= job._id %>/<%= user._id %>"
+                                            class="btn btn-outline-warning btn-block shadow-sm">Chấp nhận lời mời</a>
+                                    </p>
+                                <% } %>
+
+                                
+                                
+                                <hr>
+                                <h3 class="fw-500 font-size-16 mb-3">Liên kết công việc</h3>
+                                <input disabled type="text" value="http://localhost:8000/candidate/job-info/<%= job._id %>"
+                                    class="form-control bg-transparent mb-2 font-size-14 input-profile-freelancer">
+                                <small style="margin-left: 2px;"><i>Sao chép liên kết tại đây</i></small>    
+                                <hr>
+                                <br>
+                                <i>&copy;freelanceGo 2020</i>
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <!-- <div class="card shadow-md mb-4"> -->
+                   
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+<%- include ('../template/footer.ejs') -%>

@@ -1,0 +1,71 @@
+mình lấy dc cái 
+	info = state.info = [....]
+	kpi = state.kpi = [...]
+	state.taskDescription = ...
+	state.taskName = ...
+p1:
+code: "p1"
+value: ["Bàn phím"]
+p2: {value: "báo cáo nhập hàng", code: "p2"}
+p3: {value: 345, code: "p3"}
+p4: {value: "28-05-2020", code: "p4"}
+p5: {value: "true", code: "p5"}
+
+type: 'Number'
+type: 'Text'
+type: 'Date'
+type: 'SetOfValues'
+type: 'Boolean'
+
+
+
+
+evaluateId: ...
+user: ....
+automaticPoint: ....
+employeePoint: ....
+
++
+
+process:...
+autopoint: ...
+role: ....
+info: {...}
+date:...
+status: ... cap nhat khi ket thuc
+
+results:{...}
+
+
+
+
+
+
+
+
+		{
+                    "automaticPoint" : 95,
+                    "employeePoint" : 10,
+                    "approvedPoint" : 0,
+                    "taskImportanceLevel" : 5,
+                    "_id" : ObjectId("5ed07f9c245cb438acacedac"),
+                    "employee" : ObjectId("5ea0107bd12997d7bc8787c3"),
+                    "role" : "Consulted"
+                }, 
+                {
+                    "automaticPoint" : 95,
+                    "employeePoint" : 90,
+                    "approvedPoint" : 0,
+                    "taskImportanceLevel" : 5,
+                    "_id" : ObjectId("5ed085cbb1d4cc35b419a168"),
+                    "employee" : ObjectId("5ea0107bd12997d7bc8787c3"),
+                    "role" : "Responsible"
+                }
+
+
+
+
+
+
+
+

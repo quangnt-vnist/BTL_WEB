@@ -1,0 +1,58 @@
+<div id="data-job">
+    <% if ( totalCount === 0) { %>
+        <div>
+            <h1 style="text-align: center; margin-top: 10px;">Không tìm thấy công việc nào</h1>
+        </div>
+    <% } %>
+    <% job.forEach(item => { %>
+
+        <div class="card card-border-bottom rounded-0 card-hover flex-md-row">
+            <div class="ml-10 mt-11 mr-4 mb-11">
+                <img src="/images/bg-head-03.jpg" style="height: 150px;width: 150px;" alt="<%= item.creator.name %> ">
+            </div>
+            <div class="card-body pl-3 pt-11 pr-10 pb-11 flex-md-grow-1">
+                <div class="card bg-transparent unset-border">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="card-header p-0 bg-transparent">
+                                    <h3 class="fw-500 font-size-18" style="font-size: 18px; font-weight: 500;">
+                                        <a href="/candidate/job-info/<%= item._id %>" class="text-primary"><%= item.name %> </a>
+                                    </h3>
+                                    <span class="ml-2 mr-2" style="margin: 12px 2px 0px 2px;">
+                                        <i class="fa fa-user"  aria-hidden="true"></i>
+                                    </span>Đăng bởi: <%= item.creator.name %> &nbsp;&nbsp;&nbsp;
+                                    <span class="font-size-14 text-gray" style="font-size: 14px;">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i> <%= item.createdAt %> 
+                                    </span>
+                                </div>
+                                <br>
+                            
+                                <div class="mb-2">
+                                    <span class="fw-500 text-gray" style="font-weight: 500; color: gray;">Lĩnh vực tuyển dụng:</span><%= item.field %>
+                                </div>
+                                <div class="mb-2">
+                                    <span class="fw-500 text-gray" style="font-weight: 500; color: gray;">Mức lương: </span> <%= item.budget %>$
+                                </div>
+                                <div class="mb-2">
+                                    <span class="fw-500 text-gray" style="font-weight: 500; color: gray;">Thời gian làm dự kiến:</span> <%= item.timeOfWork %>
+                                </div>
+                                <div class="mb-2">
+                                    <span class="fw-500 text-gray" style="font-weight: 500; color: gray;">Yêu cầu trình độ:</span> <%= item.levelOfCandidate %>
+                                </div>
+                                <hr>
+                                <p class="mb-3 font-size-14 text-gray"><%= item.description %> </p>
+                              
+                            </div>
+                            <div class="col-md-3 text-md-right">
+                                <!-- link chi tiết công việc============================================ -->
+                                <p><a href="/candidate/job-info/<%= item._id %>" class="btn btn-outline-primary">Xem Chi tiết</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+
+</div>

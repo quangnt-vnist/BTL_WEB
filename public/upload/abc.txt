@@ -1,0 +1,169 @@
+    public int heuristic1(State goalstate) 
+  { // goalstate là state dích du?c g?i t? hàm estimate c?a Node v?i tham s? là (Node goalnode) goalnode là node dích 
+      int[] goal = goalstate.Value; // tr?ng thái dích
+      int distance = 0;
+      for (int i = 0; i < Length; i++)
+      {
+          int c = Value[i]; //value ? dây là value ? trên d?u c?a class State (trang thái trung gian)
+          int v = 0;
+          for (int j = 0; j < Length; j++)
+              if (c == goal[j])
+              {
+                  v = j;
+                  break;
+              }
+          
+          if (c != 0 && i != v ){
+                distance += 1;
+          }        
+
+      }
+
+      return distance;
+  } 
+  
+        public int heuristic2(State goalstate) 
+  { // goalstate là state dích du?c g?i t? hàm estimate c?a Node v?i tham s? là (Node goalnode) goalnode là node dích 
+      int[] goal = goalstate.Value; // tr?ng thái dích
+      int distance = 0;
+      for (int i = 0; i < Length; i++)
+      {
+          int c = Value[i]; //value ? dây là value ? trên d?u c?a class State (trang thái trung gian)
+          int v = 0;
+          for (int j = 0; j < Length; j++)
+              if (c == goal[j])
+              {
+                  v = j;
+                  break;
+              }
+          if (c != 0 ){
+              if( (i % Size) != (v % Size) ) distance +=1;
+              if( ( i / Size ) != (v / Size)) distance +=1;
+          }        
+
+      }
+
+      return distance;
+  } 
+        
+  //t?ng kho?ng cách du?ng chim bay
+  public int heuristic3(State goalstate) 
+  { // goalstate là state dích du?c g?i t? hàm estimate c?a Node v?i tham s? là (Node goalnode) goalnode là node dích 
+      int[] goal = goalstate.Value; // tr?ng thái dích
+      int distance = 0;
+      for (int i = 0; i < Length; i++)
+      {
+          int c = Value[i]; //value ? dây là value ? trên d?u c?a class State (trang thái trung gian)
+          int v = 0;
+          for (int j = 0; j < Length; j++)
+              if (c == goal[j])
+              {
+                  v = j;
+                  break;
+              }
+          if (c != 0)
+          {
+              int xd = Math.abs((i % Size) - (v % Size));
+              int yd = Math.abs((i / Size) - (v / Size));
+              
+              distance += (int) Math.ceil( Math.sqrt(xd*xd + yd*yd) ) ;
+              
+          }
+      }
+
+      return distance;
+  } 
+
+   // t?ng kho?ng cách mahartan
+  public int heuristic4(State goalstate)
+  {
+      int[] goal = goalstate.Value;
+      int distance = 0;
+      int a = 0;
+      for (int i = 0; i < Length; i++)
+      {
+          int c = Value[i];
+          int v = 0;
+          for (int j = 0; j < Length; j++)
+              if (c == goal[j])
+              {
+                  v = j;
+                  break;
+              }
+          if (c != 0)
+          {
+              int xd = Math.abs((i % Size) - (v % Size));
+              int yd = Math.abs((i / Size) - (v / Size));
+
+               distance += xd+ yd;
+          }
+      }
+
+      return  distance ;
+  }
+  
+  public int heuristic5(State goalstate)    
+  {
+      int[] goal = goalstate.Value;
+      int distance = 0;
+      int distance1 =0;
+      int a = 0;
+      for (int i = 0; i < Length; i++)
+      {
+          int c = Value[i];
+          int v = 0;
+          for (int j = 0; j < Length; j++)
+              if (c == goal[j])
+              {
+                  v = j;
+                  break;
+              }
+          if (c != 0)
+          {
+              int xd = Math.abs((i % Size) - (v % Size));
+              int yd = Math.abs((i / Size) - (v / Size));
+
+              distance += xd+ yd;
+          }
+          //Tính ch? s? ph?t
+          if((i != 0) && (i % Size != Size-1) && (Value[i] == i+1) && (Value[i+1] == i)) a += 2;
+          if((i != 0) && (i < Length - Size) && (Value[i] == i+Size)&& (Value[i+Size] == i)) a += 2;
+      }      
+
+      distance = distance + a  ;
+      return  distance;
+      
+  }    
+
+   public int heuristic6(State goalstate)    
+  {
+      int[] goal = goalstate.Value;
+      int distance = 0;
+      int distance1 =0;
+      int a = 0;
+      for (int i = 0; i < Length; i++)
+      {
+          int c = Value[i];
+          int v = 0;
+          for (int j = 0; j < Length; j++)
+              if (c == goal[j])
+              {
+                  v = j;
+                  break;
+              }
+          if (c != 0)
+          {
+              int xd = Math.abs((i % Size) - (v % Size));
+              int yd = Math.abs((i / Size) - (v / Size));
+
+              distance += xd*xd+ yd*yd;
+          }
+          //Tính ch? s? ph?t
+          if((i != 0) && (i % Size != Size-1) && (Value[i] == i+1) && (Value[i+1] == i)) a += 2;
+          if((i != 0) && (i < Length - Size) && (Value[i] == i+Size)&& (Value[i+Size] == i)) a += 2;
+      }      
+
+      distance = distance + a  ;
+      return  distance;
+      
+  } 

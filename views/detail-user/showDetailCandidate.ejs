@@ -1,0 +1,381 @@
+
+<%- include ('../template/header.ejs') -%>
+
+<!-- Jquery JS-->
+<body>
+<div class="page-wrapper p-t-100 p-b-100 font-robo">
+    <!-- <div class="wrapper wrapper--w680"> -->
+    <div class="wrapper " style="margin-top: -100px; width: 50%;">
+        <div class="card card-1">
+            <div class="card-heading"></div>
+            <div class="card-body">
+
+                <% if (user && user.hasDetail === -1) { %>
+                    <h2 class="title">Hồ sơ cá nhân</h2>
+                    <form method="POST" action="/candidate/create-info">
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" value="<%= user.name %> " placeholder="Tên" name="name" required>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input class="input--style-1 js-datepicker" type="text" placeholder="Ngày sinh" name="birthday" required>
+                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="sex" required>
+                                            <option disabled="disabled" selected="selected">Giới tính</option>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ">Nữ</option>
+                                            <option value="Khác">Khác</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+    
+                          
+                        <div class="row row-space">
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Địa chỉ" name="address" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="experience" required>
+                                            <option disabled="disabled" selected="selected">Trình độ bản thân</option>
+                                            <option value="Junior">Junior</option>
+                                            <option value="Senior">Senior</option>
+                                            <option value="Master">Master</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- TODO: specialize -->
+                        <div class="row row-space">
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Chuyên môn" name="specialized" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="priorityWork" required>
+                                            <option disabled="disabled" selected="selected">Thời gian làm việc</option>
+                                            <option value="1 tháng">1 tháng</option>
+                                            <option value="1-3 tháng">1-3 tháng</option>
+                                            <option value="> 3 tháng">> 3 tháng</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Mức Lương" name="salary" required>
+    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rs-select2 js-select-simple select--no-search">
+                            <div class="input-group">
+                            Kỹ năng
+                            <select name="skill" id="skill" multiple="multiple" required>
+                                <!-- <option value="" disabled selected>Kỹ năng</option> -->
+                                <option value="DesignUI">DesignUI</option>
+                                <option value="Frontend Developer">Frontend Developer</option>
+                                <option value="Backend Developer">Backend Developer</option>
+                                <option value="App Mobile">App Mobile</option>
+                                <option value="Android Developer">Android Developer</option>
+                                <option value="Data Scientist">Data Scientist</option>
+                            </select>
+                            <div class="select-dropdown"></div>
+                        </div>
+                        </div>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#skill').multiselect();
+                        });
+                    </script>
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" placeholder="Giới thiệu bản thân" rows="3" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                Chọn ảnh CV: <input type="file" name="file" placeholder="">
+                            </div>
+                        </div>
+                    </div> -->
+    
+                    <div class="p-t-20">
+                        <input class="btn btn--radius btn--green" type="submit" value="Tạo thông tin" />
+                    </div>
+                    </form>
+                <% } %>
+
+                <% if (user && user.hasDetail !== -1) { %>
+                    <h2 class="title">Hồ sơ cá nhân</h2>
+                    <form method="POST" action="/candidate/update-info">
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" value="<%= user.name %> " placeholder="Tên" name="name" required>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <% 
+                                         var d = new Date(detail.birth),
+                                            month = '' + (d.getMonth() + 1),
+                                            day = '' + d.getDate(),
+                                            year = d.getFullYear();
+
+                                            if (month.length < 2)
+                                                month = '0' + month;
+                                            if (day.length < 2)
+                                                day = '0' + day;
+
+                                        var res = [day, month, year].join('/');   
+                                        console.log('birthday', res); 
+                                    %> 
+                                    <input class="input--style-1 js-datepicker" type="text" placeholder="Ngày sinh" name="birthday" value="<%= res %>" required>
+                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="sex" required>
+                                            <option disabled="disabled">Giới tính</option>
+                                            <% if (detail.sex === 'Nam') { %>
+                                                <option value="Nam" selected>Nam</option>
+                                            <% } %>
+                                            <% if (detail.sex === 'Nữ') { %>
+                                                <option value="Nữ" selected>Nữ</option>
+                                            <% } %>
+                                            <% if (detail.sex === 'Khác') { %>
+                                                <option value="Khác" selected>Khác</option>
+                                            <% } %>
+                                            <% if (detail.sex !== 'Nam') { %>
+                                                <option value="Nam">Nam</option>
+                                            <% } %>
+                                            <% if (detail.sex !== 'Nữ') { %>
+                                                <option value="Nữ">Nữ</option>
+                                            <% } %>
+                                            <% if (detail.sex !== 'Khác') { %>
+                                                <option value="Khác">Khác</option>
+                                            <% } %>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+    
+                          
+                        <div class="row row-space">
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Địa chỉ" name="address" required value="<%= detail.address %>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="experience" required>
+                                            <option disabled="disabled" >Trình độ bản thân</option>
+                                            
+                                            <% if (detail.experience === 'Junior') { %>
+                                                <option value="Junior" selected>Junior</option>
+                                            <% } %>
+                                            <% if (detail.experience === 'Senior') { %>
+                                                <option value="Senior" selected>Senior</option>
+                                            <% } %>
+                                            <% if (detail.experience === 'Master') { %>
+                                                <option value="Master" selected>Master</option>
+                                            <% } %>
+                                            <% if (detail.experience !== 'Junior') { %>
+                                                <option value="Junior">Junior</option>
+                                            <% } %>
+                                            <% if (detail.experience !== 'Senior') { %>
+                                                <option value="Senior">Senior</option>
+                                            <% } %>
+                                            <% if (detail.experience !== 'Master') { %>
+                                                <option value="Master">Master</option>
+                                            <% } %>
+                                            
+                                            
+                                            
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- TODO: specialize -->
+                        <div class="row row-space">
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Chuyên môn" name="specialized" required value="<%= detail.specialized %>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="priorityWork" required>
+                                            <option disabled="disabled" >Thời gian làm việc</option>
+                                            <% console.log(typeof(detail.freelanceInfo.priorityWork)) %> 
+                                            <% if (detail.freelanceInfo.priorityWork === '1 tháng') { %>
+                                                <option value="1 tháng" selected='selected'>1 tháng</option>
+                                            <% } %>
+                                            <% if (detail.freelanceInfo.priorityWork === '1 tháng') { %>
+                                                <option value="1 tháng">1 tháng</option>
+                                            <% } %>
+
+
+                                            <% if (detail.freelanceInfo.priorityWork === '1-3 tháng') { %>
+                                                <option value="1-3 tháng"selected='selected'>1-3 tháng</option>
+                                            <% } %>
+                                            <% if (detail.freelanceInfo.priorityWork === '1-3 tháng') { %>
+                                                <option value="1-3 tháng">1-3 tháng</option>
+                                            <% } %>
+
+
+                                            <% if (detail.freelanceInfo.priorityWork === '> 3 tháng') { %>
+                                                <option value="> 3 tháng" selected='selected'>> 3 tháng</option>
+                                            <% } %>
+                                            <% if (detail.freelanceInfo.priorityWork === '> 3 tháng') { %>
+                                                <option value="> 3 tháng">> 3 tháng</option>
+                                            <% } %>
+                                                                                        
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Mức Lương" name="salary" required value="<%= detail.freelanceInfo.salary %>">
+    
+                                </div>
+                            </div>
+                        </div>
+                        <div id="skill-div" class="rs-select2 js-select-simple select--no-search">
+                            <div class="input-group">
+                            Kỹ năng
+                            <select name="skill" id="skill" multiple="multiple" required >
+                                <!-- <option value="" disabled selected>Kỹ năng</option> -->
+
+                                
+                                <% 
+                                    var listSkill = ["DesignUI", "Frontend Developer", "Backend Developer", "App Mobile", "Android Developer", "Data Scientist"];
+                                    var check = (data) => {
+                                        return detail.skill.indexOf(data) !== -1; // data mà có trong mảng thì true
+                                    }
+                                %> 
+
+                                <% listSkill.forEach(sk => { %>
+                                    <% if (check(sk)) { %>
+                                        <option value="<%= sk %>" selected><%= sk %></option>
+                                    <% } %>
+                                    <% if (!check(sk)) { %>
+                                        <option value="<%= sk %>"><%= sk %></option>
+                                    <% } %>
+                                <% }) %>
+
+                                
+                            </select>
+                            <div class="select-dropdown"></div>
+                        </div>
+                        <% console.log('----------', detail.skill) %> 
+
+
+                        </div>
+
+
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#skill').multiselect();
+                        });
+
+                        // $(document).ready( ()=>{
+                        //     var data = $('#data-select').html();
+                        //     // $('#skill-div > .select2-selection__rendered').prepend(data);
+                        //     $('div > div > span > span > span > ul').prepend(data);
+                        //     // prepend('<li class="select2-selection__choice" title="DesignUI">'+
+                        //     //     '<span class="select2-selection__choice__remove" role="presentation">×</span>'+
+                        //     //     'DesignUI'
+                        //     //     +'</li>')
+                        // })
+                    </script>
+                    
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" placeholder="Giới thiệu bản thân" rows="3" required><%= detail.description %></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                Chọn ảnh CV: <input type="file" name="file" placeholder="">
+                            </div>
+                        </div>
+                    </div> -->
+    
+                    <div class="p-t-20">
+                        <input class="btn btn--radius btn--green" type="submit" value="Chỉnh sửa"/>
+                    </div>
+                    </form>
+                    
+                    <div id="data-select" style="display: none;">
+                        <% detail.skill.forEach(sk => { %>
+                            <li class="select2-selection__choice" title="DesignUI">
+                                <span class="select2-selection__choice__remove" role="presentation">×</span><%= sk %>
+                            </li>
+                        <% }) %>
+                    </div>
+
+                <% } %>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<!-- Vendor JS-->
+<script src="/vendor/select2/select2.min.js"></script>
+<script src="/vendor/datepicker/moment.min.js"></script>
+<script src="/vendor/datepicker/daterangepicker.js"></script>
+
+<!-- Main JS-->
+<script src="/javascripts/global.js"></script>
+<script type="text/javascript" src="/javascripts/bootstrap-multiselect.js"></script>
+
+
+</body>
+<%- include ('../template/footer.ejs') -%>
+

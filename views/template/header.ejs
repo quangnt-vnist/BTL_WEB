@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title><%= title %> </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+
+    <!-- dropzone css -->
+    <link rel="stylesheet" href="/stylesheets/dropzone.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="/stylesheets/auth.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link href="/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/stylesheets/main.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="/stylesheets/bootstrap-multiselect.css" type="text/css"/>
+    <!--bootstrap-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+    <!-- dropzone js -->
+    <script src="/javascripts/dropzone.js"></script>
+</head>
+
+<body>
+    <% var user = user?user:null %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand">
+            <a class="navbar-brand" href="/">
+                <img src="/images/logo.png" alt="Logo" style="width: 100px; height: 150px; margin: -85px 0px; ">
+            </a>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <% if (user === null) { %>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#info">Thông tin trang web</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#contact">Liên hệ</a>
+                    </li>
+                </ul>
+            <% } %>
+            <% if (user) { %>
+
+            <ul class="navbar-nav mr-auto">
+                <% if (user.role === "Nhà tuyển dụng") { %>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <!-- <a class="nav-link" href="/employer/search-cv?page=1&perpage=5">Tìm hồ sơ</a> -->
+                    <a class="nav-link" href="/employer/search-cv">Tìm hồ sơ</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Quản lý công việc
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/employer/create-job">Đăng tuyển dụng Freelance</a>
+                        <!-- <a class="dropdown-item" href="#">Đăng tuyển dụng Fulltime</a> -->
+                        <div class="dropdown-divider"></div>
+                        <!-- <a class="dropdown-item" href="/employer/active-job?page=1&perpage=5">Việc Freelance đang tuyển dụng</a>
+                        <a class="dropdown-item" href="/employer/not-active-job?page=1&perpage=5">Việc Freelance dừng tuyển dụng</a> -->
+                        <a class="dropdown-item" href="/employer/active-job">Việc Freelance đang tuyển dụng</a>
+                        <a class="dropdown-item" href="/employer/not-active-job">Việc Freelance dừng tuyển dụng</a>
+                        <!-- <a class="dropdown-item" href="#">Việc Fulltime đã đăng</a> -->
+                    </div>
+                </li>
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Quản lý ứng viên
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Ứng viên được quan tâm</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Ứng viên đã đồng ý</a>
+                    </div>
+                </li> -->
+                <!-- <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li> -->
+                <% } %>
+                <% if (user.role === "Ứng viên") { %>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">Trang chủ</a>
+                </li>
+                <li class="nav-item ">
+                    <!-- <a class="nav-link" href="/candidate/show-job?page=1&perpage=5">Tìm việc</a> -->
+                    <a class="nav-link" href="/candidate/show-job">Tìm việc</a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Quản lý công việc
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <!-- <a class="dropdown-item" href="/candidate/show-participate-job?page=1&perpage=5">Việc đã chấp nhận</a>
+                        <a class="dropdown-item" href="/candidate/show-favorite-job?page=1&perpage=5">Việc Freelance quan tâm</a>
+                        <a class="dropdown-item" href="/candidate/show-invited-job?page=1&perpage=5">Việc Freelance được mời</a> -->
+                        <a class="dropdown-item" href="/candidate/show-participate-job">Việc đã chấp nhận</a>
+                        <!-- <div class="dropdown-divider"></div> -->
+                        <a class="dropdown-item" href="/candidate/show-favorite-job">Việc Freelance quan tâm</a>
+                        <a class="dropdown-item" href="/candidate/show-invited-job">Việc Freelance được mời</a>
+                    </div>
+                </li>
+                <!-- <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li> -->
+                <% } %>
+            </ul>
+
+            <% } %>
+
+            <!-- neu da dang nhap  -->
+
+            <% if (user) { %>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="/images/def_face.jpg"
+                            style=" border: solid 1px blue; border-radius: 50%; width:30px; height: 30px; margin-top: -30px;"
+                            alt="" />
+                        <span class="text-left d-inline-block font-size-14">
+                            <span class="d-block"><%= user.name %> </span>
+                            <span class="text-gray-575"><%= user.role %> </span>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class=" nav-link ">
+                            <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRqnn6ozflqt1VzVQmXS_xf-iVQHgH3CJnclXKXh0LoGLl3yLTS&usqp=CAU" -->
+                            <img src="/images/def_face.jpg"
+                                style=" border: solid 1px blue; border-radius: 50%; width:30px; height: 30px; margin-top: -30px;"
+                                alt="" />
+                            <span class="text-left d-inline-block font-size-14">
+                                <span class="d-block"><%= user.name %> </span>
+                                <span class="text-gray-575"><%= user.role %> </span>
+                            </span>
+                        </div>
+                        <% if (user.role === "Nhà tuyển dụng") { %>
+                        <a class="dropdown-item" href="/employer/employer-info">Thiết lập cá nhân</a>
+                        <% } %>
+                        <% if (user.role === "Ứng viên") { %>
+                        <a class="dropdown-item" href="/candidate/candidate-info">Thiết lập cá nhân</a>
+                        <% } %>
+                        <a class="dropdown-item" href="/auth/logout">Đăng xuất</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#"> &copy;<i> Freelancer-go</i> </a>
+                    </div>
+                </div>
+            </ul>
+            
+            <% } %>
+
+            <!-- chua dang nhap -->
+
+            <% if (user === null) { %>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <!-- <a class="nav-link" href="#">Right</a> -->
+                        <a href="/auth/login" class=" right-link">ĐĂNG NHẬP</a>&nbsp|&nbsp<a href="/auth/signup" class=" right-link">ĐĂNG KÍ</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a href="/auth/signup" class=" right-link">SIGNUP</a>
+                    </li> -->
+                </ul>
+            
+            <% } %>
+        </div>
+
+    </nav>
+    <br>
+    <div style="margin-top: 80px; min-height: 600px;">

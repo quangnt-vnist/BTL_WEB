@@ -1,0 +1,7 @@
+Có thêm ô trạng thái công việc ở cái đánh giá , và chỉnh sửa 
+nếu muốn thay đổi trạng thái thì cập nhật :)
+
+bỏ cái đánh giá cá nhân cho accountable, và cái người phê
+duyệt cũng đánh giá đc cho nhau
+
+thêm service edit và kết thúc!

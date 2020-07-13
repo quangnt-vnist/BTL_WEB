@@ -1,0 +1,37 @@
+public boolean validateDA(){
+        boolean status = true;
+        if(txtBaoVe.getText().equals("") || txtKiHoc.getText().equals("")
+                || txtMaDA.getText().equals("")||txtTenDA.getText().equals("")
+                || txtThanhLy.getText().equals("") || txtTomTat.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Chưa nhập đủ thông tin!", "ERROR!", JOptionPane.ERROR_MESSAGE );
+            status = false;
+        }
+        else if(!cDateStr(txtBaoVe.getText()) || !cDateStr(txtThanhLy.getText())){
+            JOptionPane.showMessageDialog(this, "Sai định dạng ngày!", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            status = false;
+        }
+        else if(!cKiHocStr(txtKiHoc.getText())){
+            JOptionPane.showMessageDialog(this, "Sai định dạng kì học!", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            status = false;
+        }
+        return status;
+    }
+
+
+
+
+public boolean validateUS(){
+        boolean status = true;
+        if(txtPassUS.getText().equals("")|| txtBirthUS.getText().equals("") || txtDiachiUS.getText().equals("")
+                || txtEmaiilUS.getText().equals("")||txtMaUs.getText().equals("")
+                || txtTenUS.getText().equals("") || txtSDTus.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Chưa nhập đủ thông tin!", "ERROR!", JOptionPane.ERROR_MESSAGE );
+            status = false;
+        }
+        else if(!cDateStr(txtBirthUS.getText())){
+            JOptionPane.showMessageDialog(this, "Sai định dạng ngày!", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            status = false;
+        }
+        
+        return status;
+    }

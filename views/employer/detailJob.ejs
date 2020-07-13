@@ -1,0 +1,1029 @@
+<%- include ('../template/header.ejs') -%>
+
+<div class="content-wrapper all-content">
+    <section class="content  pt-8 pb-8"> <!--bg-gray-75-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-8">
+
+
+                    <div class="card shadow-md mb-4">
+                        <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                            <h3 class="font-size-18 m-0">
+                                <button type="button" class="btn btn-info" data-toggle="collapse" href="#OverView" style="color: white;">TỔNG QUAN</button>
+                            </h3>
+                        </div>
+                        <div id="OverView" class="collapse show">
+                            <div class="card-body p-0">
+                                <div class="card flex-sm-row">
+                                    <div class="ml-10 mt-11 mb-3">
+                                        <img src="/images/bg-head-03.jpg"
+                                            class="avatar avatar-100" alt="">
+                                    </div>
+                                    <div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1">
+                                        <div class="card unset-border">
+                                            <div class="card-header d-md-flex p-0 bg-transparent">
+                                                <div class="flex-grow-1">
+                                                    <h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;"><%= job.name %> 
+                                                    </h1>
+                                                    <span class="ml-2 mr-2" style="margin: 12px 2px 0px 2px; font-size: 5px;"><i class="fa fa-circle font-size-dot"
+                                                            aria-hidden="true"></i></span>
+                                                            <% if (job.inActive === 1) { %>
+                                                            <strong><i style="color: red;">Đang tuyển dụng</i></strong> 
+                                                            <% } %>
+                                                            <% if (job.inActive !== 1) { %>
+                                                            <strong><i style="color: darkslategrey;">Đã dừng tuyển dụng</i></strong> 
+                                                            <% } %>
+                                                            <br>
+                                                    <span class="font-size-14 text-gray"  style="font-size: 14px;">
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i> Ngày đăng: 
+                                                        <%= jobCreatedAt %> </span>
+                                                </div>
+                                                <!-- <span class="fw-bold ml-md-auto d-none">Điểm: <span
+                                                        class="text-primary">-</span></span> -->
+                                            </div>
+                                            <div class="card-body p-0">
+                                                <p class=" mb-3 fw-500 "> Lĩnh vực tuyển dụng: <span class="text-primary" style="font-weight: 500;"><%= job.field %></span>   </p>
+                                                <ul
+                                                    class="nav align-items-start align-items-sm-center flex-column flex-sm-row mb-3">
+
+                                                    <li class="nav-item">
+                                                        <span class=" font-size-14 fw-500">Mức lương:</span>
+                                                        <span class="font-size-14" style="color: red; font-weight: 500;"><%= job.budget %>$</span>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <hr class="ml-10 mr-10"> -->
+                            <div class="card-body pt-2 pl-10 pr-10 pb-10 font-size-14">
+                                <p class="mb-0 ">Công ty tuyển dụng: <%= creator.company.name %> </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="card shadow-md mb-4">
+                        <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                            
+                            <h3 class="font-size-18 m-0">
+                                <button type="button" class="btn btn-info" data-toggle="collapse" href="#collapseInfo">MÔ TẢ CHI TIẾT</button>
+                            </h3>
+                            <!-- <a data-toggle="collapse" href="#collapseInfo">MÔ TẢ CHI TIẾT</a> -->
+                        </div>
+
+                        <div id="collapseInfo" class="collapse show">
+<!-- ------------------------------- -->
+
+                            <div class="card-body p-0">
+                                <p><span class="font-size-16 fw-bold mb-1" style="padding: 3px 10px; font-size: 16; font-weight: bold;">Mô tả công việc:</span>
+                                <%= job.description %></p><br>
+    
+                                <p><span class="font-size-16 fw-bold mb-1" style="padding: 3px 10px; font-size: 16; font-weight: bold;">Thời gian làm việc:</span>
+                                <%= job.timeOfWork %></p><br>
+                                
+                                <p><span class="font-size-16 fw-bold mb-1" style="padding: 3px 10px; font-size: 16; font-weight: bold;">Trình độ yêu cầu:</span>
+                                <%= job.levelOfCandidate %></p>
+                                
+                                <div id="skills-list" class="pl-10 pr-10 pt-3 pb-3 unset-border" >
+                                    <span class="font-size-16 fw-bold mb-1" style="padding: 3px 10px; font-size: 16; font-weight: bold;">Kỹ năng yêu cầu: </span>
+                                    <% job.field.forEach(sk => { %>
+                                    <a class="btn btn-skills btn-sxs mr-2 mb-2"><span><%= sk %> </span> </a>
+                                    <% }) %>
+                                </div>
+                                <!-- <hr> -->
+                            </div>
+                            
+    
+    
+                            <div class="card shadow-md mb-4 unset-border">
+                                <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                    <!-- <h3 class="font-size-18 m-0">
+                                        <a type="button" class="btn btn-info" style="color: white;">Thông tin Công ty tuyển dụng</a>
+                                    </h3> -->
+                                </div>
+                                <div class="card-body p-0 pt-3 pb-3 ">
+                                    <div id="education-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                                        <div class="card pt-2 pb-2 education-item-134434 unset-border" >
+                                            <div class="card-body p-0">
+                                                <h4>
+                                                    <a style="font-weight: 500;">Thông tin Công ty tuyển dụng</a>
+                                                </h4>
+                                                <br>
+                                                <p class="mb-1" > <span style="font-size: 16; font-weight: bold;">Tên:</span> <%= creator.company.name %> </p><br>
+                                                <p class="mb-1" ><span style="font-size: 16; font-weight: bold;">Địa chỉ:</span> <%= creator.company.address %> </p><br>
+                                                <p class="mb-1" > <span style="font-size: 16; font-weight: bold;">Mô tả công ty:</span> <%= creator.company.description %> </p><br>
+                                                <p ><span style="font-size: 16; font-weight: bold;">Mọi thông tin vui lòng liên hệ:</span></p><br>
+                                                <a href="<%= creator.company.website %>" target="blank" class="mb-1" style="margin-left: 5px;">- Website công ty: <%= creator.company.website %> </a><br>
+                                                <a href="mailto:<%= creator.company.email %>" class="mb-1" style="margin-left: 5px;">- Email công ty: <%= creator.company.email %> </a><br>
+                                                <a href="mailto:<%= creator.user.email %>" class="mb-1" style="margin-left: 5px;">- Người đại diện: <%= creator.user.name %> - Email: <%= creator.user.email %> </a><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+<!-- ====================================== -->
+
+                        </div>
+                        
+                    </div>
+
+
+
+
+
+                    <!-- <div>
+                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#report">BÁO CÁO TIẾN ĐỘ</button>
+                        <div id="report" class="collapse show"> -->
+                    <!-- < % if (job.inActive === 1) { %> -->
+                    <div class="card shadow-md mb-4 unset-border">
+                        <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                            <h3 class="font-size-18 m-0">
+                                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#report">BÁO CÁO TIẾN ĐỘ</button>
+                            </h3>
+                        </div>
+                        <!-- start div collapse -->
+                        <div id="report" class="collapse show">
+<!-- start comment -->
+
+                    <div id="box-comment">
+                     <% if (comment.length !== 0) { %>
+                        <% comment.forEach(item => { %>
+                            <!-- <div id="cmt-id"><%= item._id %></div> -->
+                            <div class="card shadow-md container" id="cmt-<%= item._id %>">
+                               <!-- <div class="card-header">
+                                   <h3 class="font-size-18 m-0">TỔNG QUAN</h3>
+                               </div> -->
+                               
+                                   
+                                       <div class="card-body p-0">
+                                           <div class="card flex-sm-row unset-border">
+                                               <div class="ml-10 mt-11 mb-3">
+                                                   <img src="/images/def_face.jpg"
+                                                       class="avatar avatar-64" alt="">
+                                               </div>
+                                               <div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1">
+                                                   <div class="card unset-border">
+                                                       <div class="card-header d-md-flex p-0 bg-transparent">
+                                                           <div class="flex-grow-1">
+                                                               <h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;"><%= item.creator.name %> 
+                                                               </h1>
+                                                               <span class="ml-2 mr-2" style="margin: 12px 2px 0px 2px; font-size: 5px;"><i class="fa fa-circle font-size-dot"
+                                                                       aria-hidden="true"></i>
+                                                                </span> <%= item.creator.role %> 
+                                                                <br>
+                                                               <span class="font-size-14 text-gray"  style="font-size: 14px;">
+                                                                   <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                   <%= item.createdAt %> 
+                                                               </span>
+                                                               <% if (user._id === String(item.creator._id)) { %>
+                                                                <!-- < % console.log(item.comment); %>  -->
+                                                                <div class="option-cmt float-right" data-id_cmt="<%= item._id %>">
+                                                                    <div></div>
+                                                                    <!-- onclick="deleteCmt()" onclick=" return handleConfirm('Bạn có chắc chắn muốn xóa không?')" href="/employer/delete-comment/< %= item._id %>" -->
+                                                                       <a title="Delete this comment"><i class="fa fa-trash" style="color: red; font-size: 20px;"></i></a>
+                                                                   </div>
+                                                               <% } %>
+                                                                   
+                                                           </div>
+                                                       </div>
+                                                       <div class="card-body p-0">
+                                                           <!-- <p class=" mb-3 fw-500">nội dung cmt</p> -->
+                                                           <ul
+                                                               class="nav align-items-start align-items-sm-center flex-column flex-sm-row mb-3">
+                           
+                                                               <li class="nav-item">
+                                                                   <span class="text-gray font-size-14 fw-500"> <%= item.comment %> </span>
+                                                               </li>
+                           
+                                                           </ul>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <!-- <hr class="ml-10 mr-10"> -->
+                                       
+                                       <% if (item.file.length !== 0) { %>
+                                        <div class="card-body pt-2 pl-10 pr-10 pb-10 font-size-14" style="text-align: center;">
+                                           <p class="mb-0 text-primary font-size-14">Tài liệu:</p>
+                                           <div class="row" style="text-align: center;">
+                                               <% item.file.forEach(elem => { %>
+                                                
+                                                 <% if (elem.type === "image") { %>
+                                                   <div class="file-img" style="margin: 5px;">
+                                                       <!-- <a href="http://localhost:8000/upload/< %= elem.name %>" target="_blank" rel="noopener noreferrer">
+                                                           <img title="< %= elem.name%> " src="/upload/< %= elem.name %>" class="avatar file-img" >
+                                                       </a> -->
+                                                       <a href="<%= elem.path %>" target="_blank" rel="noopener noreferrer">
+                                                           <img title="<%= elem.name%> " src="<%= elem.path %>" class="avatar file-img" >
+                                                       </a>
+                                                   </div>
+                                                 <% } %>
+                                                 <% if (elem.type !== "image") { %>
+                                                  <div class="file-up" title="<%= elem.name%> ">
+                                                   <div style="margin-top: 30%" title="<%= elem.name%> ">
+                                                        <!-- <a href="/upload/< %= elem.name %>" target="_blank" rel="noopener noreferrer"> -->
+                                                        <a href="<%= elem.path %>" target="_blank" rel="noopener noreferrer">
+                                                            <i class="fa fa-file" style="font-size: 20px;"></i>
+                                                            <br>
+                                                            <% if (elem.fileType.length > 17) { %>
+                                                                Tài liệu <%= elem.type %>
+                                                               <% } %>
+                                                               <% if (elem.fileType.length <= 17) { %>
+                                                                   Tài liệu <%= elem.fileType %>
+                                                               <% } %>
+                                                        </a>
+                                                   </div>
+                                                  </div>
+                                                 <% } %>
+                                               <% }) %>
+                                              
+                                           </div>
+                                           
+                                       </div>
+                                       <% } %>
+                                       
+                                   </div>
+                           <% }) %>
+                     <% } %>
+                     </div>
+
+
+                    <div>
+<!-- add cmt -->
+
+                        <div class="card shadow-md container">
+                                
+                                    
+                            <div class="card-body p-0">
+                                <div class="card flex-sm-row unset-border">
+                                    <div class="ml-10 mt-11 mb-3">
+                                        <img src="\images\def_face.jpg"
+                                            class="avatar avatar-64" alt="">
+                                    </div>
+                                    <div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1">
+                                        <div class="card unset-border" >
+                                            <div class="card-header d-md-flex p-0 bg-transparent ">
+                                                <div class="flex-grow-1">
+                                                    <h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;"><%= user.name %> 
+                                                    </h1>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-0 ">
+                                                <div >
+                                                    <form action="/employer/comment/<%= job._id %>" method="post" enctype="multipart/form-data">
+                                                        <textarea class="text-cmt" name="comment" id="" cols="" rows="3" placeholder="Báo cáo tại đây"></textarea>
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-sm-9">
+                                                                <input class="ip-file btn " type="file" id="file" multiple="true" name="file">
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <!-- <input class="btn btn-outline-success" type="submit" value="Gửi"> -->
+                                                                <input class="btn btn-outline-success" id="submit-cmt" onclick="saveCmt()" type="button" value="Gửi">
+                                                            </div>
+                                                        </div>                                
+                                                    </form>
+                                                    
+                                                    <!-- <form id="upload-widget" method="post" action="/employer/upfile" class="dropzone"></form> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="job-id" style="display: none;"><%= job._id %></div>
+                            <!-- <div id="helo< %= 1 %>">HELOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</div> -->
+                            
+                        </div>
+                        <script>
+                            function saveCmt(){  
+                              var fd = new FormData();
+                              // var files = $('#file')[0].files[0];
+                              var files = $('#file')[0].files;
+                              for(let i = 0; i < files.length ; i++){
+                                  console.log('item', files[i]);
+                                  fd.append('files',files[i]);
+                              }
+                              // fd.append('files',files);
+                              fd.append('comment', $('.text-cmt').val());
+                              var jobId = $('#job-id').html();
+
+                              $.ajax({
+                                  url: `/employer/comment/${jobId}`,
+                                  async: false,
+                                  contentType: false,
+                                  processData: false,
+                                  type : "POST",
+                                  data: fd ,
+                                  success: function(res){
+                                    var cmt = '';
+                                    cmt = cmt + '<div class="card shadow-md container" id="cmt-'+res.comment._id+'"> <div class="card-body p-0"> <div class="card flex-sm-row unset-border"> <div class="ml-10 mt-11 mb-3"><img src="/images/def_face.jpg" class="avatar avatar-64" alt=""></div>';
+                                    cmt = cmt + '<div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1"><div class="card unset-border"><div class="card-header d-md-flex p-0 bg-transparent"><div class="flex-grow-1">';
+                                    cmt = cmt + '<h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;">'+res.comment.creator.name+'</h1>';
+                                    cmt = cmt + '<span class="ml-2 mr-2" style="margin: 12px 2px 0px 2px; font-size: 5px;"><i class="fa fa-circle font-size-dot"aria-hidden="true"></i></span>'+res.comment.creator.role+'<br>';
+                                    cmt = cmt + '<span class="font-size-14 text-gray" style="font-size: 14px;">'
+                                                +'<i class="fa fa-calendar" aria-hidden="true"></i>'
+                                                +res.comment.createdAt+'</span>';
+                                    if(res.user._id === String(res.comment.creator._id)){
+                                        cmt = cmt + '<div class="option-cmt float-right" data-id_cmt="'+res.comment._id+'">'
+                                                    +'<a title="Delete this comment"><i class="fa fa-trash" style="color: red; font-size: 20px;"></i></a>'
+                                                    +'</div>'
+                                    }
+                                    // onclick=" return handleConfirm(\'Bạn có chắc muốn xóa hay không?\') " href="/employer/delete-comment/'+res.comment._id+'"
+                                     
+                                    cmt = cmt + '</div></div><div class="card-body p-0"><ul class="nav align-items-start align-items-sm-center flex-column flex-sm-row mb-3"><li class="nav-item">';
+                                    cmt = cmt + '<span class="text-gray font-size-14 fw-500">'+res.comment.comment+'</span>';
+                                    cmt = cmt + '</li></ul></div></div></div></div></div>';
+                                    
+                                    if(res.comment.file.length !== 0){
+                                        cmt = cmt + '<div class="card-body pt-2 pl-10 pr-10 pb-10 font-size-14" style="text-align: center;"><p class="mb-0 text-primary font-size-14">Tài liệu:</p><div class="row" style="text-align: center;">';
+                                        res.comment.file.forEach(elem => {
+                                            if(elem.type === "image"){
+                                                cmt = cmt + '<div class="file-img" style="margin: 5px;">'
+                                                          +'<a href="'+elem.path+'" target="_blank" rel="noopener noreferrer">'
+                                                                  +'<img title="'+ elem.name+'" src="'+elem.path+'" class="avatar file-img" >'
+                                                          +'</a></div>'
+                                            }
+                                            if(elem.type !== "image"){
+                                                cmt = cmt + '<div class="file-up" title="'+ elem.name+'">'
+                                                    +'<div style="margin-top: 30%" title="'+elem.name+'">'
+                                                    +'<a href="'+elem.path +'" target="_blank" rel="noopener noreferrer"><i class="fa fa-file" style="font-size: 20px;"></i><br>';
+                                                if (elem.fileType.length > 17){
+                                                    cmt = cmt + 'Tài liệu '+elem.type;
+                                                } else{
+                                                    cmt = cmt + 'Tài liệu '+elem.fileType;
+                                                }
+                                                cmt = cmt + '</a></div></div>';
+                                            }
+                                        });
+                                        cmt = cmt + '</div></div>';
+                                    }
+                                    cmt = cmt +'</div>';
+
+                                    $('#box-comment').append(cmt);
+                                      
+                                  },
+                              });
+                          }
+
+                        //   function deleteCmt() {
+                        //     var id_div = $('#cmt-id').html();
+                        //     var id = $('.option-cmt').data('id_cmt');
+                        //     alert(id_div);
+                        //     var check = window.confirm("Bạn có chắc chắn muốn xóa báo cáo này không?");
+                        //     if(check === true){
+                        //         // alert(id);
+                        //         $.ajax({
+                        //             url: `/employer/delete-comment/${id}`,
+                        //             async: false,
+                        //             type: 'GET',
+                        //             success: function(res){
+                        //                 alert(res);
+                                        
+                        //             }
+                        //         })
+                        //     } else {
+                        //         alert("không muốn xóa!");
+                        //     }
+                            
+                        //   }
+
+                          $(document).on('click', '.option-cmt', function(){
+                            var id = $(this).data('id_cmt');
+                            //   alert(id)
+                            console.log('id-client', id);
+                            var x = 1;
+                            var check = window.confirm("Bạn có chắc chắn muốn xóa báo cáo này không?");
+                            if(check === true){
+                                // $("#helo"+x).html('');
+                                // alert(id);
+                                $.ajax({
+                                    url: `/employer/delete-comment/${id}`,
+                                    async: false,
+                                    type: 'GET',
+                                    success: function(res){
+                                        alert(res);
+                                        // $('#cmt-'+id).html('');
+                                        $('#cmt-'+id).remove();
+                                    }
+                                })
+                            } else {
+                                // alert("không muốn xóa!");
+                            }
+                          })
+                          
+                        </script> 
+                        
+<!-- end add cmt -->
+                                </div>
+                        </div>
+                        <!-- end div collapse show-->
+
+                <!-- end comment -->            
+                </div>                    
+
+                <!-- < % } %> -->
+
+
+
+
+                </div>
+
+                <!-- Phần  thao tác công việc -->
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="sidebar" style="background-color: white; padding: 10px;">
+                        <div class="card bg-transparent mb-4 unset-border" style="text-align: center;">
+                            <div class="card-body p-0">
+                                <% if (job.inActive === 1) { %>
+                                    <p class="mb-2 bg-white rounded">
+                                        <a onclick="return handleConfirm('Bạn có chắc muốn dừng tuyển dụng?')" href="/employer/change-active/<%= job._id %> "
+                                            class="btn btn-outline-primary  btn-block shadow-sm">Dừng tuyển dụng</a>
+                                    </p>
+                                <% } %>
+                                <% if (job.inActive !== 1) { %>
+                                    <p class="mb-2 bg-white rounded">
+                                        <a onclick="return handleConfirm('Tiếp tục tuyển dụng?')" href="/employer/change-active/<%= job._id %> "
+                                            class="btn btn-outline-primary  btn-block shadow-sm">Mở tuyển dụng</a>
+                                    </p>
+                                <% } %>
+                                
+                                <hr>
+                                <h3 class="fw-500 font-size-16 mb-3">Liên kết công việc</h3>
+                                <input disabled type="text" value="http://localhost:8000/employer/detail-job/<%= job._id %>"
+                                    class="form-control bg-transparent mb-2 font-size-14 input-profile-freelancer">
+                                <small style="margin-left: 2px;"><i>Sao chép liên kết tại đây</i></small>    
+                                <hr>
+                                <br>
+                                <i>&copy;freelanceGo 2020</i>
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <!-- <div class="card shadow-md mb-4"> -->
+                    <% if (job.inActive === 1 ) { %>
+                        <div class="card shadow-md mb-4">
+                            <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                <h4 class="font-size-18 m-0" style="text-align: center;"><i class="fa fa-heart"></i>&nbsp;Ứng viên đang mời</h4>
+                            </div>
+                            <div class="card-body p-0 pt-3 pb-3 ">
+                                <div id="education-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                                    <div class="card pt-2 pb-2 education-item-134434 unset-border" >
+                                        <div class="card-body p-0" style="list-style: none;">
+                                            <!-- <ol> -->
+                                            <% if (invited.length === 0) { %>
+                                                <p>Không có dữ liệu</p>
+                                            <% } %>
+                                            <% invited.forEach(i => { %>
+                                                <li>
+                                                    <a class="btn btn-outline-warning mr-2 mb-2" data-toggle="modal" data-target="#imyModal<%= i.candidate._id %>" style="font-size: 16; font-weight: bold;" title="<%= i.candidate.name %>"><i class="fa fa-user"></i>&nbsp;<%= i.candidate.name %></a>
+                                                    <div class="modal" id="imyModal<%= i.candidate._id %>">
+                                                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                                                            <div class="modal-content">
+                                                                
+                                                                <!-- Modal Header -->
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title">Ứng viên đang được mời - Thông tin chi tiết - <%= i.candidate.name %></h1>
+                                                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                                                </div>
+                                                    
+                                                                <!-- Modal body -->
+                                                                <div class="modal-body">
+                                                                    
+                                                                    
+
+                                                                    <div class="row">
+                                                                        <div class="col-lg-9 col-md-8">
+                                                                            <div class="card shadow-md mb-4">
+                                                                                <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                                                                    <h3 class="font-size-18 m-0">TỔNG QUAN</h3>
+                                                                                </div>
+                                                                                <div class="card-body p-0">
+                                                                                    <div class="card flex-sm-row">
+                                                                                        <div class="ml-10 mt-11 mb-3">
+                                                                                            <img src="/images/def_face.jpg"
+                                                                                                class="avatar avatar-100" alt="">
+                                                                                        </div>
+                                                                                        <div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1">
+                                                                                            <div class="card unset-border">
+                                                                                                <div class="card-header d-md-flex p-0 bg-transparent">
+                                                                                                    <div class="flex-grow-1">
+                                                                                                        <h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;"><%= i.candidate.name %> 
+                                                                                                        </h1>
+                                                                                                        <span class="ml-2 mr-2" style="margin: 12px 2px 0px 2px; font-size: 5px;"><i class="fa fa-circle font-size-dot"
+                                                                                                                aria-hidden="true"></i></span>
+                                                                                                        <span class="font-size-14 text-gray"  style="font-size: 14px;">
+                                                                                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                                                                            <%= i.candidate.detail.address %> </span>
+                                                                                                    </div>
+                                                                                                    <!-- <span class="fw-bold ml-md-auto d-none">Điểm: <span
+                                                                                                            class="text-primary">-</span></span> -->
+                                                                                                </div>
+                                                                                                <div class="card-body p-0">
+                                                                                                    <p class=" mb-3 fw-500"> <%= i.candidate.detail.specialized %>  </p>
+                                                                                                    <ul
+                                                                                                        class="nav align-items-start align-items-sm-center flex-column flex-sm-row mb-3">
+
+                                                                                                        <li class="nav-item">
+                                                                                                            <span class="text-gray font-size-14 fw-500">Chi phí / Giờ:</span>
+                                                                                                            <span class="text-primary font-size-14">₫ <%= i.candidate.detail.freelanceInfo.salary %> </span>
+                                                                                                        </li>
+
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- <hr class="ml-10 mr-10"> -->
+                                                                                <div class="card-body pt-2 pl-10 pr-10 pb-10 font-size-14">
+                                                                                    <p class="mb-0 "><%= i.candidate.detail.description %> </p>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            
+
+
+                                                                            <div class="card shadow-md mb-4">
+                                                                                <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                                                                    <h3 class="font-size-18 m-0">
+                                                                                        KỸ NĂNG </h3>
+                                                                                </div>
+                                                                                <div class="card-body p-0">
+                                                                                    <h6 class="font-size-16 fw-bold mb-1" style="padding: 3px 10px;"> Kỹ năng chuyên môn: </h6>
+                                                                                    <div id="skills-list" class="pl-10 pr-10 pt-3 pb-3 unset-border" style="padding: 3px 10px;">
+                                                                                        <% i.candidate.detail.skill.forEach(sk => { %>
+                                                                                        <a class="btn btn-skills btn-sxs mr-2 mb-2"><span><%= sk %> </span> </a>
+                                                                                        <% }) %>
+                                                                                    </div>
+                                                                                    <!-- <hr> -->
+                                                                                </div>
+                                                                                <div class="card shadow-md mb-4">
+                                                                                    <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                                                                        <h3 class="font-size-18 m-0">
+                                                                                            Kinh nghiệm </h3>
+                                                                                    </div>
+                                                                                    <div class="card-body p-0 pt-3 pb-3 unset-border" style="padding: 3px 0px;">
+                                                                                        <div id="experience-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                                                                                            <div class="card pt-2 pb-2 experience-item-134435 unset-border">
+                                                                                                <div class="card-body p-0">
+                                                                                                    <h6 class="font-size-16 fw-bold mb-1"> Có trình độ <%= i.candidate.detail.experience %>
+                                                                                                        trong lĩnh vực <%= i.candidate.detail.specialized %> </h6>
+                                                                                                    <p class="mb-1"><%= i.candidate.detail.description %> </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div class="card shadow-md mb-4">
+                                                                                    <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                                                                        <h3 class="font-size-18 m-0">Thông tin yêu cầu công việc freelance</h3>
+                                                                                    </div>
+                                                                                    <div class="card-body p-0 pt-3 pb-3 ">
+                                                                                        <div id="education-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                                                                                            <div class="card pt-2 pb-2 education-item-134434 unset-border" >
+                                                                                                <div class="card-body p-0">
+                                                                                                    <h6 class="font-size-16 fw-bold mb-1">Ưu tiên công việc:</h6>
+                                                                                                    <p class="mb-1">Thời gian: <%= i.candidate.detail.freelanceInfo.priorityWork %> </p>
+                                                                                                    <p class="mb-1">Mức lương: đ <%= i.candidate.detail.freelanceInfo.salary %> </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-lg-3 col-md-4">
+                                                                            <div class="sidebar" style="background-color: white; padding: 10px;">
+                                                                                <div class="card bg-transparent mb-4 unset-border" style="text-align: center;">
+                                                                                    <div class="card-body p-0">
+                                                                                    
+                                                                                            <p class="mb-2 bg-white rounded">
+                                                                                                <a onclick="return handleConfirm('Bạn có chắc muốn hủy lời mời?')" href="/employer/discard-invite/<%= job._id %>/<%= i.candidate._id %> "
+                                                                                                    class="btn btn-outline-primary  btn-block shadow-sm">Hủy lời mời</a>
+                                                                                            </p>
+                                                                                    
+                                                                                        
+                                                                                        <hr>
+                                                                                        <h3 class="fw-500 font-size-16 mb-3">Liên kết hồ sơ</h3>
+                                                                                        <input disabled type="text" value="http://localhost:8000/employer/candidate-info/<%= i.candidate._id %>"
+                                                                                            class="form-control bg-transparent mb-2 font-size-14 input-profile-freelancer">
+                                                                                        <small style="margin-left: 2px;"><i>Sao chép liên kết tại đây</i></small>    
+                                                                                        <hr>
+                                                                                        <br>
+                                                                                        <i>&copy;freelanceGo 2020</i>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                    
+                                                                <!-- Modal footer -->
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                    
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                    
+                                                </li>
+                                            <% }) %>
+                                            <!-- </ol> -->
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <div class="card shadow-md mb-4">
+                            <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                <h4 class="font-size-18 m-0" style="text-align: center;"> <i class="fa fa-user-plus"></i> &nbsp;Ứng viên đăng kí</h4>
+                            </div>
+                            <div class="card-body p-0 pt-3 pb-3 ">
+                                <div id="education-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                                    <div class="card pt-2 pb-2 education-item-134434 unset-border" >
+                                        <div class="card-body p-0" style="list-style: none;">
+                                            <% if (favorite.length === 0) { %>
+                                                <p>Không có dữ liệu</p>
+                                            <% } %>
+                                            <!-- <ol> -->
+                                            <% favorite.forEach(f => { %>
+                                                <li>
+                                                    <!-- <a class="btn btn-skills btn-sxs mr-2 mb-2" data-toggle="modal" data-target="#fmyModal<%= f.candidate._id %>" style="font-size: 16; font-weight: bold;" title="<%= f.candidate.name %>"><i class="fa fa-user"></i><%= f.candidate.name %></a> -->
+                                                    <a class="btn btn-outline-warning mr-2 mb-2" data-toggle="modal" data-target="#fmyModal<%= f.candidate._id %>" style="font-size: 16; font-weight: bold;" title="<%= f.candidate.name %>"><i class="fa fa-user"></i>&nbsp;<%= f.candidate.name %></a>
+                                                    <div class="modal" id="fmyModal<%= f.candidate._id %>">
+                                                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                                                            <div class="modal-content">
+                                                                
+                                                                <!-- Modal Header -->
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title">Ứng viên đăng kí - Thông tin chi tiết - <%= f.candidate.name %></h1>
+                                                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                                                </div>
+                                                    
+                                                                <!-- Modal body -->
+                                                                <div class="modal-body">
+                                                                    
+                                                                    
+
+                                                                    <div class="row">
+                                                                        <div class="col-lg-9 col-md-8">
+                                                                            <div class="card shadow-md mb-4">
+                                                                                <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                                                                    <h3 class="font-size-18 m-0">TỔNG QUAN</h3>
+                                                                                </div>
+                                                                                <div class="card-body p-0">
+                                                                                    <div class="card flex-sm-row">
+                                                                                        <div class="ml-10 mt-11 mb-3">
+                                                                                            <img src="/images/def_face.jpg"
+                                                                                                class="avatar avatar-100" alt="">
+                                                                                        </div>
+                                                                                        <div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1">
+                                                                                            <div class="card unset-border">
+                                                                                                <div class="card-header d-md-flex p-0 bg-transparent">
+                                                                                                    <div class="flex-grow-1">
+                                                                                                        <h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;"><%= f.candidate.name %> 
+                                                                                                        </h1>
+                                                                                                        <span class="ml-2 mr-2" style="margin: 12px 2px 0px 2px; font-size: 5px;"><i class="fa fa-circle font-size-dot"
+                                                                                                                aria-hidden="true"></i></span>
+                                                                                                        <span class="font-size-14 text-gray"  style="font-size: 14px;">
+                                                                                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                                                                            <%= f.candidate.detail.address %> </span>
+                                                                                                    </div>
+                                                                                                    <!-- <span class="fw-bold ml-md-auto d-none">Điểm: <span
+                                                                                                            class="text-primary">-</span></span> -->
+                                                                                                </div>
+                                                                                                <div class="card-body p-0">
+                                                                                                    <p class=" mb-3 fw-500"> <%= f.candidate.detail.specialized %>  </p>
+                                                                                                    <ul
+                                                                                                        class="nav align-items-start align-items-sm-center flex-column flex-sm-row mb-3">
+
+                                                                                                        <li class="nav-item">
+                                                                                                            <span class="text-gray font-size-14 fw-500">Chi phí / Giờ:</span>
+                                                                                                            <span class="text-primary font-size-14">₫ <%= f.candidate.detail.freelanceInfo.salary %> </span>
+                                                                                                        </li>
+
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- <hr class="ml-10 mr-10"> -->
+                                                                                <div class="card-body pt-2 pl-10 pr-10 pb-10 font-size-14">
+                                                                                    <p class="mb-0 "><%= f.candidate.detail.description %> </p>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            
+
+
+                                                                            <div class="card shadow-md mb-4">
+                                                                                <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                                                                    <h3 class="font-size-18 m-0">
+                                                                                        KỸ NĂNG </h3>
+                                                                                </div>
+                                                                                <div class="card-body p-0">
+                                                                                    <h6 class="font-size-16 fw-bold mb-1" style="padding: 3px 10px;"> Kỹ năng chuyên môn: </h6>
+                                                                                    <div id="skills-list" class="pl-10 pr-10 pt-3 pb-3 unset-border" style="padding: 3px 10px;">
+                                                                                        <% f.candidate.detail.skill.forEach(sk => { %>
+                                                                                        <a class="btn btn-skills btn-sxs mr-2 mb-2"><span><%= sk %> </span> </a>
+                                                                                        <% }) %>
+                                                                                    </div>
+                                                                                    <!-- <hr> -->
+                                                                                </div>
+                                                                                <div class="card shadow-md mb-4">
+                                                                                    <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                                                                        <h3 class="font-size-18 m-0">
+                                                                                            Kinh nghiệm </h3>
+                                                                                    </div>
+                                                                                    <div class="card-body p-0 pt-3 pb-3 unset-border" style="padding: 3px 0px;">
+                                                                                        <div id="experience-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                                                                                            <div class="card pt-2 pb-2 experience-item-134435 unset-border">
+                                                                                                <div class="card-body p-0">
+                                                                                                    <h6 class="font-size-16 fw-bold mb-1"> Có trình độ <%= f.candidate.detail.experience %>
+                                                                                                        trong lĩnh vực <%= f.candidate.detail.specialized %> </h6>
+                                                                                                    <p class="mb-1"><%= f.candidate.detail.description %> </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div class="card shadow-md mb-4">
+                                                                                    <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                                                                        <h3 class="font-size-18 m-0">Thông tin yêu cầu công việc freelance</h3>
+                                                                                    </div>
+                                                                                    <div class="card-body p-0 pt-3 pb-3 ">
+                                                                                        <div id="education-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                                                                                            <div class="card pt-2 pb-2 education-item-134434 unset-border" >
+                                                                                                <div class="card-body p-0">
+                                                                                                    <h6 class="font-size-16 fw-bold mb-1">Ưu tiên công việc:</h6>
+                                                                                                    <p class="mb-1">Thời gian: <%= f.candidate.detail.freelanceInfo.priorityWork %> </p>
+                                                                                                    <p class="mb-1">Mức lương: đ <%= f.candidate.detail.freelanceInfo.salary %> </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-lg-3 col-md-4">
+                                                                            <div class="sidebar" style="background-color: white; padding: 10px;">
+                                                                                <div class="card bg-transparent mb-4 unset-border" style="text-align: center;">
+                                                                                    <div class="card-body p-0">
+                                                                                    
+                                                                                            <p class="mb-2 bg-white rounded">
+                                                                                                <a onclick="return handleConfirm('Bạn có chắc muốn kí hợp đồng?')" href="/employer/confirm-job/<%= job._id %>/<%= f.candidate._id %> "
+                                                                                                    class="btn btn-outline-primary  btn-block shadow-sm">Chấp nhận ứng viên</a>
+                                                                                            </p>
+                                                                                    
+                                                                                        
+                                                                                        <hr>
+                                                                                        <h3 class="fw-500 font-size-16 mb-3">Liên kết hồ sơ</h3>
+                                                                                        <input disabled type="text" value="http://localhost:8000/employer/candidate-info/<%= f.candidate._id %>"
+                                                                                            class="form-control bg-transparent mb-2 font-size-14 input-profile-freelancer">
+                                                                                        <small style="margin-left: 2px;"><i>Sao chép liên kết tại đây</i></small>    
+                                                                                        <hr>
+                                                                                        <br>
+                                                                                        <i>&copy;freelanceGo 2020</i>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                    
+                                                                <!-- Modal footer -->
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                    
+                                                            </div>
+                                                        </div>
+                                                    </div>        
+                                                </li>
+                                            <% }) %>
+                                            <!-- </ol> -->
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                    <% } %>
+                    <!-- <br> -->
+                    <div class="card shadow-md mb-4">
+                        <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                            <h4 class="font-size-18 m-0" style="text-align: center;"> <i class="fa fa-users"></i> &nbsp;Ứng viên tham gia</h4>
+                        </div>
+                        <div class="card-body p-0 pt-3 pb-3 ">
+                            <div id="education-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                                <div class="card pt-2 pb-2 education-item-134434 unset-border" >
+                                    <div class="card-body p-0" style="list-style: none; "> <!-- text-align: center; -->
+                                        <!-- <ol> -->
+                                        <% if (participant.length === 0) { %>
+                                         <p>Không có dữ liệu</p>
+                                        <% } %>
+                                        <% participant.forEach(p => { %>
+                                            <li>
+                                                <!-- <a class="btn btn-skills btn-sxs mr-2 mb-2" data-toggle="modal" data-target="#pmyModal<%= p.candidate._id %>" style="font-size: 16; font-weight: bold;" title="<%= p.candidate.name %>"><i class="fa fa-user"></i><%= p.candidate.name %></a> -->
+                                                <a class="btn btn-outline-warning mr-2 mb-2" data-toggle="modal" data-target="#pmyModal<%= p.candidate._id %>" style="font-size: 16; font-weight: bold;" title="<%= p.candidate.name %>"><i class="fa fa-user"></i>&nbsp;<%= p.candidate.name %></a>
+                                                    <div class="modal" id="pmyModal<%= p.candidate._id %>">
+                                                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                                                            <div class="modal-content">
+                                                                
+                                                                <!-- Modal Header -->
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title">Ứng viên tham gia - Thông tin chi tiết - <%= p.candidate.name %></h1>
+                                                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                                                </div>
+                                                    
+                                                                <!-- Modal body -->
+                                                                <div class="modal-body">
+                                                                    
+                                                                    
+
+                                                                    <div class="row">
+                                                                        <div class="col-lg-9 col-md-8">
+                                                                            <div class="card shadow-md mb-4">
+                                                                                <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                                                                    <h3 class="font-size-18 m-0">TỔNG QUAN</h3>
+                                                                                </div>
+                                                                                <div class="card-body p-0">
+                                                                                    <div class="card flex-sm-row">
+                                                                                        <div class="ml-10 mt-11 mb-3">
+                                                                                            <img src="/images/def_face.jpg"
+                                                                                                class="avatar avatar-100" alt="">
+                                                                                        </div>
+                                                                                        <div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1">
+                                                                                            <div class="card unset-border">
+                                                                                                <div class="card-header d-md-flex p-0 bg-transparent">
+                                                                                                    <div class="flex-grow-1">
+                                                                                                        <h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;"><%= p.candidate.name %> 
+                                                                                                        </h1>
+                                                                                                        <span class="ml-2 mr-2" style="margin: 12px 2px 0px 2px; font-size: 5px;"><i class="fa fa-circle font-size-dot"
+                                                                                                                aria-hidden="true"></i></span>
+                                                                                                        <span class="font-size-14 text-gray"  style="font-size: 14px;">
+                                                                                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                                                                            <%= p.candidate.detail.address %> </span>
+                                                                                                    </div>
+                                                                                                    <!-- <span class="fw-bold ml-md-auto d-none">Điểm: <span
+                                                                                                            class="text-primary">-</span></span> -->
+                                                                                                </div>
+                                                                                                <div class="card-body p-0">
+                                                                                                    <p class=" mb-3 fw-500"> <%= p.candidate.detail.specialized %>  </p>
+                                                                                                    <ul
+                                                                                                        class="nav align-items-start align-items-sm-center flex-column flex-sm-row mb-3">
+
+                                                                                                        <li class="nav-item">
+                                                                                                            <span class="text-gray font-size-14 fw-500">Chi phí / Giờ:</span>
+                                                                                                            <span class="text-primary font-size-14">₫ <%= p.candidate.detail.freelanceInfo.salary %> </span>
+                                                                                                        </li>
+
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- <hr class="ml-10 mr-10"> -->
+                                                                                <div class="card-body pt-2 pl-10 pr-10 pb-10 font-size-14">
+                                                                                    <p class="mb-0 "><%= p.candidate.detail.description %> </p>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            
+
+
+                                                                            <div class="card shadow-md mb-4">
+                                                                                <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                                                                    <h3 class="font-size-18 m-0">
+                                                                                        KỸ NĂNG </h3>
+                                                                                </div>
+                                                                                <div class="card-body p-0">
+                                                                                    <h6 class="font-size-16 fw-bold mb-1" style="padding: 3px 10px;"> Kỹ năng chuyên môn: </h6>
+                                                                                    <div id="skills-list" class="pl-10 pr-10 pt-3 pb-3 unset-border" style="padding: 3px 10px;">
+                                                                                        <% p.candidate.detail.skill.forEach(sk => { %>
+                                                                                        <a class="btn btn-skills btn-sxs mr-2 mb-2"><span><%= sk %> </span> </a>
+                                                                                        <% }) %>
+                                                                                    </div>
+                                                                                    <!-- <hr> -->
+                                                                                </div>
+                                                                                <div class="card shadow-md mb-4">
+                                                                                    <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                                                                        <h3 class="font-size-18 m-0">
+                                                                                            Kinh nghiệm </h3>
+                                                                                    </div>
+                                                                                    <div class="card-body p-0 pt-3 pb-3 unset-border" style="padding: 3px 0px;">
+                                                                                        <div id="experience-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                                                                                            <div class="card pt-2 pb-2 experience-item-134435 unset-border">
+                                                                                                <div class="card-body p-0">
+                                                                                                    <h6 class="font-size-16 fw-bold mb-1"> Có trình độ <%= p.candidate.detail.experience %>
+                                                                                                        trong lĩnh vực <%= p.candidate.detail.specialized %> </h6>
+                                                                                                    <p class="mb-1"><%= p.candidate.detail.description %> </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div class="card shadow-md mb-4">
+                                                                                    <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                                                                                        <h3 class="font-size-18 m-0">Thông tin yêu cầu công việc freelance</h3>
+                                                                                    </div>
+                                                                                    <div class="card-body p-0 pt-3 pb-3 ">
+                                                                                        <div id="education-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                                                                                            <div class="card pt-2 pb-2 education-item-134434 unset-border" >
+                                                                                                <div class="card-body p-0">
+                                                                                                    <h6 class="font-size-16 fw-bold mb-1">Ưu tiên công việc:</h6>
+                                                                                                    <p class="mb-1">Thời gian: <%= p.candidate.detail.freelanceInfo.priorityWork %> </p>
+                                                                                                    <p class="mb-1">Mức lương: đ <%= p.candidate.detail.freelanceInfo.salary %> </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> <!--het div col-->
+
+                                                                        <div class="col-lg-3 col-md-4">
+                                                                            <div class="sidebar" style="background-color: white; padding: 10px;">
+                                                                                <div class="card bg-transparent mb-4 unset-border" style="text-align: center;">
+                                                                                    <div class="card-body p-0">
+                                                                                    
+                                                                                            <p class="mb-2 bg-white rounded">
+                                                                                                <a onclick="return handleConfirm('Bạn có chắc muốn đuổi việc ứng viên này?')" href="/employer/delete-contract/<%= job._id %>/<%= p.candidate._id %> "
+                                                                                                    class="btn btn-outline-primary  btn-block shadow-sm">Hủy hợp đồng</a>
+                                                                                                    <p>
+                                                                                                       Áp dụng với những trường hợp từ bỏ hợp đồng, hoặc xin nghỉ
+                                                                                                    </p>
+                                                                                            </p>
+                                                                                    
+                                                                                        
+                                                                                        <hr>
+                                                                                        <h3 class="fw-500 font-size-16 mb-3">Liên kết hồ sơ</h3>
+                                                                                        <input disabled type="text" value="http://localhost:8000/employer/candidate-info/<%= p.candidate._id %>"
+                                                                                            class="form-control bg-transparent mb-2 font-size-14 input-profile-freelancer">
+                                                                                        <small style="margin-left: 2px;"><i>Sao chép liên kết tại đây</i></small>    
+                                                                                        <hr>
+                                                                                        <br>
+                                                                                        <i>&copy;freelanceGo 2020</i>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> 
+
+                                                                    </div> <!--het div row-->
+                                                                    
+                                                                </div>
+                                                    
+                                                                <!-- Modal footer -->
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                    
+                                                            </div>
+                                                        </div>
+                                                    </div>  
+                                            </li>
+                                        <% }) %>
+                                        <!-- </ol> -->
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                <!-- </div> -->
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+<%- include ('../template/footer.ejs') -%>

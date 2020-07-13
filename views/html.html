@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=f, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./../public/stylesheets/style.css">
+    <!-- dropzone js -->
+    <script src="./../public/javascripts/dropzone.js"></script>
+      <!-- dropzone css -->
+      <link rel="stylesheet" href="./../public/stylesheets/dropzone.css">
+</head>
+<body >
+    <div class="file-up">
+
+        <a href="https://cdn.thethao.vip/2019/12/dj-jenny-yen-ngay-cang-go-cc-a3i-ca-cc-89m-tu-cc-a3-tin-khoe-than-hinh-hoan-ha-cc-89o-hotgirl-2122-15756177914888.jpg" target="blank">
+
+            <i class="fa fa-file" style=" color: black; font-size: 20px;"></i>
+            <br>
+            Tài liệu application
+        </a>
+        
+
+    </div>
+
+    <div class="file-img">
+        <a href="https://cdn.thethao.vip/2019/12/dj-jenny-yen-ngay-cang-go-cc-a3i-ca-cc-89m-tu-cc-a3-tin-khoe-than-hinh-hoan-ha-cc-89o-hotgirl-2122-15756177914888.jpg" target="_blank" rel="noopener noreferrer"><img src="https://cdn.thethao.vip/2019/12/dj-jenny-yen-ngay-cang-go-cc-a3i-ca-cc-89m-tu-cc-a3-tin-khoe-than-hinh-hoan-ha-cc-89o-hotgirl-2122-15756177914888.jpg"
+                    class="avatar" alt=""style="width: 130px; height=130px ;border-radius: 5px;"></a>
+    </div>
+    
+
+
+    <div class="card shadow-md container">
+        
+            
+        <div class="card-body p-0">
+            <div class="card flex-sm-row unset-border">
+                <div class="ml-10 mt-11 mb-3">
+                    <img src="/images/def_face.jpg"
+                        class="avatar avatar-100" alt="">
+                </div>
+                <div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1">
+                    <div class="card unset-border">
+                        <div class="card-header d-md-flex p-0 bg-transparent">
+                            <div class="flex-grow-1">
+                                <h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;">Họ và tên
+                                </h1>
+                                
+                            </div>
+
+                        </div>
+                        <div class="card-body p-0">
+                            <div >
+                                <form action="/upcmt" method="post">
+                                    <textarea name="comment" id="" cols="100" rows="3" placeholder="Báo cáo tại đây"></textarea>
+                                    <input type="submit" value="gửi">
+                                </form>
+                                
+                                <form id="upload-widget" method="post" action="/upfile" class="dropzone"></form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,94 @@
+<%- include ('../template/header.ejs') -%>
+
+<div style="min-height:600px;">
+    <div class="content-wrapper">
+        <section class="content bg-gray-100 pt-8 pb-8">
+            <div class="container container-sm">
+    
+    
+                <div class="card shadow-md">
+                    <div class="card-header pl-10 pr-10 pt-4 pb-4 bg-transparent border-bottom">
+                        <h3 class="font-size-18 mb-0">MỜI NHẬN VIỆC FREELANCE</h3>
+                        <strong style="color: red;"><%= message %> </strong>
+                        <br>
+                        <a href="http://localhost:8000/employer/search-cv">
+                            Tìm kiếm ứng viên khác --->
+                        </a>
+                    </div>
+                    <div class="card-body p-10">
+                        <form action="/employer/invite-candidate/<%= candidate.user._id %> " method="post"
+                            class="form-validate form-ajax form-invite" novalidate="novalidate">
+                            <div class="form-group mb-4">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <img src="/images/def_face.jpg"
+                                            class="avatar avatar-64" alt="">
+                                    </div>
+                                    <div class="pl-3">
+                                        <a title="Xem chi tiết ứng viên" href="/employer/candidate-info/<%= candidate.user._id %> ">
+                                            <h5 class="font-size-18 fw-500 mb-1 text-primary" style="font-size: 18; font-weight: 500;"><%= candidate.user.name %> </h5>
+                                            <p class="fw-500 mb-0" style="font-weight: 500;"><%= candidate.specialized %> </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="job" required>
+                                            <option disabled="disabled" selected="selected" style="width: 20vmax;">Chọn công việc</option>
+                                            <% job.forEach(item => { %>
+                                                <option value="<%= item._id %>" style="width: 20vmax;"><%= item.name %> </option>
+                                            <% }) %>
+                                            
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="message" class="form-control-label fw-bold d-block mb-3">
+                                    Tin nhắn </label>
+                                <textarea name="message" cols="40" rows="4" id="message" type="textarea"
+                                    data-validate-hide-message="1" class="form-control required" required="true"
+                                    data-rule-required="true" data-rule-maxlength="5000">
+    Xin chào,
+    Tôi có công việc muốn mời bạn tham gia.
+    Vui lòng xem nội dung công việc và liên hệ nếu bạn muốn nhận việc này.
+    <%= user.name %> </textarea>
+                            </div>
+                            
+                            <!-- <div class="buttons buttons-1">
+                                <button class="btn btn-primary">Tạo công việc &amp; gửi lời mời</button>
+                            </div> -->
+                            <div class="buttons buttons-2 ">
+                                <a href="/">
+                                    <button class="btn btn-primary" onclick=" return handleConfirm('Bạn có chắc chắn muốn mời ứng viên này vào dự án')">Send invitation</button>
+                                </a>
+                                
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+            
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script> -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="/vendor/select2/select2.min.js"></script>
+    <script src="/vendor/datepicker/moment.min.js"></script>
+    <script src="/vendor/datepicker/daterangepicker.js"></script>
+    
+    <!-- Main JS-->
+    <script src="/javascripts/global.js"></script>
+    <script type="text/javascript" src="/javascripts/bootstrap-multiselect.js"></script>
+    
+</div>
+
+<%- include ('../template/footer.ejs') -%>

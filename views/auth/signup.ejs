@@ -1,0 +1,46 @@
+<%- include ('../template/header.ejs') -%>
+
+
+<div id="login" class="container-fluid box">
+    
+    <h1 class="text-center  pt-5"> <i class="fa fa-send-o"></i>&nbsp;Đăng Kí</h1>
+    <div class="container-fluid">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-12">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" action="/auth/signup" method="post">
+                        <div class="form-group">
+                            <label for="username" class="">Họ và tên:</label><br>
+                            <input type="text" name="name" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="">Email:</label><br>
+                            <input type="email" name="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="">Mật khẩu:</label><br>
+                            <input type="password" name="password" id="password" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1" class="">Vai trò</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="role" required>
+                                <option class="" value="Nhà tuyển dụng">Nhà tuyển dụng</option>
+                                <option class="" value="Ứng viên">Ứng viên</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-danger btn-md" value="Đăng kí">
+                        </div>
+                        <div id="register-link" class="text-center text-gray">
+                            <p>Bạn đã có tài khoản?<a href="/auth/login" class=""> Hãy đăng nhập ngay.</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<!-- < %- include ('../template/footer.ejs') -%> -->

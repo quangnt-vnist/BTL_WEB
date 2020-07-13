@@ -1,0 +1,131 @@
+
+
+<div class="row">
+    <div class="col-lg-9 col-md-8">
+        <div class="card shadow-md mb-4">
+            <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                <h3 class="font-size-18 m-0">TỔNG QUAN</h3>
+            </div>
+            <div class="card-body p-0">
+                <div class="card flex-sm-row">
+                    <div class="ml-10 mt-11 mb-3">
+                        <img src="/images/def_face.jpg"
+                            class="avatar avatar-100" alt="">
+                    </div>
+                    <div class="card-body pl-10 pt-11 pr-10 pb-2 flex-md-grow-1">
+                        <div class="card unset-border">
+                            <div class="card-header d-md-flex p-0 bg-transparent">
+                                <div class="flex-grow-1">
+                                    <h1 class="font-size-18 fw-500 text-primary d-inline-block" style="font-size: 18px; font-weight: 500;"><%= i.candidate.name %> 
+                                    </h1>
+                                    <span class="ml-2 mr-2" style="margin: 12px 2px 0px 2px; font-size: 5px;"><i class="fa fa-circle font-size-dot"
+                                            aria-hidden="true"></i></span>
+                                    <span class="font-size-14 text-gray"  style="font-size: 14px;">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        <%= i.candidate.detail.address %> </span>
+                                </div>
+                                <!-- <span class="fw-bold ml-md-auto d-none">Điểm: <span
+                                        class="text-primary">-</span></span> -->
+                            </div>
+                            <div class="card-body p-0">
+                                <p class=" mb-3 fw-500"> <%= i.candidate.detail.specialized %>  </p>
+                                <ul
+                                    class="nav align-items-start align-items-sm-center flex-column flex-sm-row mb-3">
+
+                                    <li class="nav-item">
+                                        <span class="text-gray font-size-14 fw-500">Chi phí / Giờ:</span>
+                                        <span class="text-primary font-size-14">₫ <%= i.candidate.detail.freelanceInfo.salary %> </span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <hr class="ml-10 mr-10"> -->
+            <div class="card-body pt-2 pl-10 pr-10 pb-10 font-size-14">
+                <p class="mb-0 "><%= i.candidate.detail.description %> </p>
+            </div>
+        </div>
+
+        
+
+
+        <div class="card shadow-md mb-4">
+            <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                <h3 class="font-size-18 m-0">
+                    KỸ NĂNG </h3>
+            </div>
+            <div class="card-body p-0">
+                <h6 class="font-size-16 fw-bold mb-1" style="padding: 3px 10px;"> Kỹ năng chuyên môn: </h6>
+                <div id="skills-list" class="pl-10 pr-10 pt-3 pb-3 unset-border" style="padding: 3px 10px;">
+                    <% i.candidate.detail.skill.forEach(sk => { %>
+                    <a class="btn btn-skills btn-sxs mr-2 mb-2"><span><%= sk %> </span> </a>
+                    <% }) %>
+                </div>
+                <!-- <hr> -->
+            </div>
+            <div class="card shadow-md mb-4">
+                <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                    <h3 class="font-size-18 m-0">
+                        Kinh nghiệm </h3>
+                </div>
+                <div class="card-body p-0 pt-3 pb-3 unset-border" style="padding: 3px 0px;">
+                    <div id="experience-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                        <div class="card pt-2 pb-2 experience-item-134435 unset-border">
+                            <div class="card-body p-0">
+                                <h6 class="font-size-16 fw-bold mb-1"> Có trình độ <%= i.candidate.detail.experience %>
+                                    trong lĩnh vực <%= i.candidate.detail.specialized %> </h6>
+                                <p class="mb-1"><%= i.candidate.detail.description %> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card shadow-md mb-4">
+                <div class="card-header pt-13 pb-13 pl-10 pr-10">
+                    <h3 class="font-size-18 m-0">Thông tin yêu cầu công việc freelance</h3>
+                </div>
+                <div class="card-body p-0 pt-3 pb-3 ">
+                    <div id="education-list" class="pl-10 pr-10" style="padding: 0px 10px;">
+                        <div class="card pt-2 pb-2 education-item-134434 unset-border" >
+                            <div class="card-body p-0">
+                                <h6 class="font-size-16 fw-bold mb-1">Ưu tiên công việc:</h6>
+                                <p class="mb-1">Thời gian: <%= i.candidate.detail.freelanceInfo.priorityWork %> </p>
+                                <p class="mb-1">Mức lương: đ <%= i.candidate.detail.freelanceInfo.salary %> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-4">
+        <div class="sidebar" style="background-color: white; padding: 10px;">
+            <div class="card bg-transparent mb-4 unset-border" style="text-align: center;">
+                <div class="card-body p-0">
+                   
+                        <p class="mb-2 bg-white rounded">
+                            <a href="/employer/invite-candidate/<%= i.candidate.detail._id %> "
+                                class="btn btn-outline-primary  btn-block shadow-sm">Mời nhận việc freelance</a>
+                        </p>
+                   
+                    
+                    <hr>
+                    <h3 class="fw-500 font-size-16 mb-3">Liên kết hồ sơ</h3>
+                    <input disabled type="text" value="http://localhost:8000/employer/candidate-info/<%= i.candidate._id %>"
+                        class="form-control bg-transparent mb-2 font-size-14 input-profile-freelancer">
+                    <small style="margin-left: 2px;"><i>Sao chép liên kết tại đây</i></small>    
+                    <hr>
+                    <br>
+                    <i>&copy;freelanceGo 2020</i>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

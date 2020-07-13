@@ -1,0 +1,250 @@
+<%- include ('./../template/header.ejs') -%>
+
+<div class="content-wrapper">
+    <section class="content bg-gray-75 pt-8 pb-8" id="freelancer-list">
+        
+        <div>
+            <div class="container container-md">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1 class="h2 fw-normal mb-3">Công việc đã dừng tuyển dụng</h1>
+                    </div>
+                    <!-- <div class="col-md-4 text-md-right"><a
+                            href="https://freelancerviet.vn/dang-tuyen-viec-freelance.html"
+                            class="btn btn-primary mb-8">Đăng tuyển</a></div> -->
+                </div>
+
+
+                <div class="card shadow-md">
+                    <div class="card-header bg-gray-100 pt-11 pb-11 pl-10 pr-10">
+                        <form action="/employer/not-active-job?page=1&perpage=5" method="post">
+                            <div class="form-inline">
+                                <div class="d-flex w-100">
+                                    <div class="input-group flex-grow-1">
+                                        <input type="text" value="" id="input-search" name="name" placeholder="Tìm công việc" class="form-control" aria-label="Text input with dropdown button">
+                                        <div class="input-group-append">
+                                            <!-- <a href="/employer/show-job?page=1&perpage=5" style="text-decoration: none;"> -->
+                                                <button class="btn btn-primary d-flex" id="btn-search-btn" type="button" >
+                                                <i class="material-icons">search</i> 
+                                            </button>
+                                            <!-- </a> -->
+                                        </div>
+                                    </div>
+                                    <div class="ml-3 "><button class="btn btn-default" type="button" data-toggle="collapse"
+                                            data-target="#collapse-filter" aria-controls="collapse-filter"
+                                            aria-expanded="false"><i class="fa fa-filter"></i> Lọc</button></div>
+                                </div>
+                                <div class="collapse navbar-collapse border-top mt-9" id="collapse-filter">
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-sm-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Trình độ</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" name="level" id="level-option" style="min-width: 20vw;">
+                                                        <option value="">Chọn giá trị</option>
+                                                        <option value="Junior">Junior</option>
+                                                        <option value="Senior">Senior</option>
+                                                        <option value="Master">Master</option>
+                                                    </select>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Lĩnh vực</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" name="field" id="field-option" style="min-width: 20vw;">
+                                                        <option value="">Chọn giá trị</option>
+                                                        <option value="DesignUI">DesignUI</option>
+                                                        <option value="Frontend Developer">Frontend Developer</option>
+                                                        <option value="Backend Developer">Backend Developer</option>
+                                                        <option value="App Mobile">App Mobile</option>
+                                                        <option value="Android Developer">Android Developer</option>
+                                                        <option value="Data Scientist">Data Scientist</option>
+                                                    </select>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="row">
+                                        <div class="col-md-2"><a href="#close-filter"
+                                                class="btn btn-outline-primary btn-block mt-4" data-toggle="collapse"
+                                                data-target="#collapse-filter" aria-controls="collapse-filter"
+                                                aria-expanded="false">Đóng</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="card-body p-0" style="min-height:500px;">
+                        
+                        <div id="data-job">
+                            <% if ( totalCount === 0 ) { %>
+                                <div>
+                                    <h1 style="text-align: center; margin-top: 10px;">Chưa có công việc nào dừng tuyển dụng</h1>
+                                </div>
+                            <% } %>
+                            <% job.forEach(item => { %>
+
+                                <div class="card card-border-bottom rounded-0 card-hover flex-md-row">
+                                    <div class="ml-10 mt-11 mr-4 mb-11"><img
+                                            src="/images/bg-head-03.jpg" style="height: 150px;width: 150px;"
+                                            alt="<%= item.creator.name %> "></div>
+                                    <div class="card-body pl-3 pt-11 pr-10 pb-11 flex-md-grow-1">
+                                        <div class="card bg-transparent unset-border">
+                                            <div class="card-body p-0">
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div class="card-header p-0 bg-transparent d-flex">
+                                                            <h3 class="fw-500 font-size-18"
+                                                                style="font-size: 18px; font-weight: 500;">
+                                                                <!-- link chi tiết -=-=-=-=--=-============================================== -->
+                                                                <a
+                                                                    href="/employer/detail-job/<%= item._id %>"
+                                                                    class="text-primary"><%= item.name %> </a>
+                                                                    <!-- =========================================== -->
+                                                                </h3><span
+                                                                class="ml-2 mr-2"
+                                                                style="margin: 12px 2px 0px 2px; font-size: 5px;">
+                                                                <i class="fa fa-circle font-size-dot" aria-hidden="true"></i> </span>
+                                                                <span
+                                                                class="font-size-14 text-gray"
+                                                                style="font-size: 14px;"><i
+                                                                    class="fa fa-calendar" aria-hidden="true"></i>  Ngày đăng: 
+                                                                    <%= item.createdAt %>  </span>
+                                                        </div>
+                                                        <br>
+                                                        <!-- <p class=" mb-3 fw-500"
+                                                            style="font-weight: 500; margin-bottom: 3px;"><%= item.timeOfWork %> 
+                                                        </p> -->
+                                                    
+                                                        <div class="mb-2"style="margin-top: 10px;"><span class="fw-500 text-gray"
+                                                                style="font-weight: 500; color: gray;">Lĩnh vực tuyển dụng:</span>
+                                                                <%= item.field %>
+                                                                    <!-- <a href="/employer/job-info/" 
+                                                                    class="btn btn-sxs btn-skills mr-2 mb-2"></a> -->
+                                                                
+                                                                
+                                                        </div>
+                                                        <div class="mb-2"><span class="fw-500 text-gray"
+                                                            style="font-weight: 500; color: gray;">Mức lương: </span>
+                                                            <%= item.budget %>$
+                                                                <!-- <a href="/employer/job-info/" 
+                                                                class="btn btn-sxs btn-skills mr-2 mb-2"></a> -->
+                                                            
+                                                            
+                                                    </div><div class="mb-2"><span class="fw-500 text-gray"
+                                                        style="font-weight: 500; color: gray;">Thời gian làm dự kiến:</span>
+                                                        <%= item.timeOfWork %>
+                                                            <!-- <a href="/employer/job-info/" 
+                                                            class="btn btn-sxs btn-skills mr-2 mb-2"></a> -->
+                                                    </div><div class="mb-2"><span class="fw-500 text-gray"
+                                                        style="font-weight: 500; color: gray;">Yêu cầu trình độ:</span>
+                                                        <%= item.levelOfCandidate %>
+                                                            <!-- <a href="/employer/job-info/" 
+                                                            class="btn btn-sxs btn-skills mr-2 mb-2"></a> -->
+                                                        
+
+                                                </div>
+                                                <hr>
+                                                <p class="mb-3 font-size-14 text-gray"><%= item.description %> </p>
+                                                        
+                                                        <!-- <p class="d-none"><span class="fw-bold">Điểm: <span
+                                                                    class="text-primary">0</span></span></p> -->
+                                                    </div>
+                                                    <div class="col-md-3 text-md-right">
+                                                        <!-- link chi tiết công việc============================================ -->
+                                                        <p><a href="/employer/detail-job/<%= item._id %>"
+                                                                class="btn btn-outline-primary">Xem Chi tiết</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <!-- < % if (totalPages > 1) { %>
+             < %- include ('../template/pagination.ejs') -%>
+            < % } %> -->
+            
+        </div>
+    </section>
+</div>
+
+<script>
+    // input-search-work-cd
+        $(document).ready(() => {
+            // console.log("Ajax here")
+            $('#btn-search-btn').click( () => {
+                let name, field, level;
+                $('#level-option').change(()=>{
+                    level = $('#level-option').val()
+                });
+                $('#field').change(()=>{
+                    field = $('#field-option').val();
+                });
+                $('#input-search').change(()=>{
+                    name = $('#input-search').val();
+                })
+                $.ajax({
+                    async: false,
+                    type : "POST",
+                    dataType : "html",
+                    data: {
+                        name: $('#input-search').val(),
+                        level: $('#level-option').val(),
+                        field: $('#field-option').val()
+                    },
+                    url : "/employer/not-active-job?t="+Date.now(),
+                    
+                    success: (res) => {
+                        // console.log('res', res);
+                        $('#data-job').replaceWith(res);
+                    }
+    
+                })
+            })
+    
+            $("#input-search").keyup(() => {
+                console.log('AJAX-------', Date.now());
+                
+                $.ajax({
+                    async: false,
+                    type : "POST",
+                    dataType : "html",
+                    data: {
+                        name: $('#input-search').val()
+                    },
+                    url : "/employer/not-active-job?t="+Date.now(),
+                    success: (res) => {
+                        let input_key = $('#input-search').val();
+                        console.log('input_key', input_key);
+                        // console.log('data success', res);
+    
+                        $('#data-job').replaceWith(res);
+                        
+                    }
+                })
+            })
+    
+            $(".page-link").click(()=>{
+                console.log('click--------------');
+            })
+        })
+    
+    </script>
+    
+
+<%- include ('../template/footer.ejs') -%>

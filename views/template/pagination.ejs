@@ -1,0 +1,47 @@
+<div class="paginations pt-11" style="padding-top: 11px;"> <!-- style="padding-top: 11px;" -->
+                <div class="container container-md">
+
+                    <nav aria-label="Page navigation" class="justify-content-center">
+                        <ul class="pagination justify-content-center">
+                            <% if (currentPage > 3) { %>
+                                <li class="page-item"><a class="page-link" href="?page=1&perpage=5">
+                                    <i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                                </li>
+                            <% } %> 
+
+                            <% if (currentPage > 1 ) { %>
+                                <li class="page-item"><a class="page-link" href="?page=<%= currentPage - 1 %>&perpage=5">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                                </li>
+                            <% } %>
+                            
+                            <% for( let i = 1; i <= totalPages; i++ ) { %>
+                                <% if (i !== currentPage ) { %>
+                                    <% if (i > currentPage - 3 && i < currentPage + 3) { %>
+                                        <li class="page-item"><a class="page-link undefined" href="?page=<%= i %>&perpage=5"><%= i %></a></li>
+                                    <% } %>
+                                <% } %> 
+                                <% if (i === currentPage) { %>
+                                    <li class="page-item active"><a class="page-link undefined" href="?page=<%= i %>&perpage=5"><%= i %></a></li>
+                                <% } %>
+                            <% } %>
+
+                            <% if (currentPage < totalPages ) { %>
+                                <li class="page-item "><a class="page-link" href="?page=<%= currentPage + 1 %>&perpage=5">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                </li>
+                            <% } %>
+                             
+                            <% if (currentPage <= totalPages-3) { %>
+                                <li class="page-item"><a class="page-link" href="?page=<%= totalPages %>&perpage=5">
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                </li>
+                            <% } %> 
+
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+            <br>
+            <br>

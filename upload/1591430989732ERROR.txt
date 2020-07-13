@@ -1,0 +1,32 @@
+chuẩn hóa tên tất cả các file module,
+test service mà đã thêm bằng postman, tạo fakedata để test,
+chạy đc 2 module(tạo kpi đơn vị gốc ở ngoài) test trên đơn vị con;
+
+
+
+
+hướng dẫn cách thức chuyển đổi:
+- quy trình đã làm b1 b2....
+- một số lỗi thường gặp
+	+ tạo phòng ban, nhân viên, trưởng phong, đúng nghiệp vụ.
+	+ sau khi đăng nhập phải chọn role phù hợp để test
+	+ phải phân quyền trang phù hợp trong quả lý trang
+	+ lưu ý trường hợp lấy id người dùng trong local storage
+	  lỗi, phải lấy id trực tiếp ngay trong service( 2vi dụ:
+	  import, thêm từ khóa async trc hàm ).
+	+ check models có đổi mới gì k? check các thuộc tính của các models
+	  cũ và mới, nếu k match nhau thì lỗi,...
+	+ khi ghép nối thì nên test service ở ngoài bằng postman, nếu đúng
+	  thì debug client dễ hơn.
+	+ có 3 loại lỗi: lỗi nghiệp vụ (phân quyền), lỗi prj cũ, lỗi 
+	  do chuyển đổi của mình (vidu: lỗi sử dụng thư viện main, đường dẫn
+	  lỗi...) 
+
+
+
+
+
+
+
+
+
